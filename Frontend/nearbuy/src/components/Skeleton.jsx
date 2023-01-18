@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, SimpleGrid, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-const Skeleton = () => {
+const Skeleton = ( ) => {
     return (
         <SimpleGrid columns={3} spacing={4}>
             <Box padding='6' boxShadow='lg'>
