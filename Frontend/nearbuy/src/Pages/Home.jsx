@@ -15,7 +15,8 @@ const Home = () => {
           margin="auto"
           display="flex"
           gap="15px"
-          maxH="150px">
+          maxH="150px"
+          border="1px solid black">
 
           <Card maxW="35%"
             justifyContent="center"
@@ -46,6 +47,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="60%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Buffet Deals</Heading>
@@ -64,6 +67,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="70%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Salon Deals</Heading>
@@ -82,6 +87,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="90%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Spa Deals</Heading>
@@ -90,7 +97,7 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="35%"
+          <Card maxW="30%"
             justifyContent="center"
             _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
             <CardBody
@@ -100,6 +107,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="70%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Activities Deals</Heading>
@@ -108,7 +117,7 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="35%"
+          <Card maxW="12%"
             justifyContent="center"
             _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
             <CardBody
@@ -118,6 +127,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="60%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Gift Cards</Heading>
@@ -126,7 +137,7 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="35%"
+          <Card maxW="12%"
             justifyContent="center"
             _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
             <CardBody
@@ -136,8 +147,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                // maxW="60%"
-                // maxH="50%"
+                maxW="60%"
+                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Health</Heading>
