@@ -5,8 +5,12 @@ import Checkout from "../Pages/checkout";
 import GiftCards from "../Pages/GiftCards";
 import Health from "../Pages/Health";
 import Home from "../Pages/Home";
+
+import Products from "../Pages/Products";
+
 import Login from "../Pages/SignIn/Login";
 import SignUp from "../Pages/SignIn/SignUp";
+
 
 function Router() {
   return (
@@ -18,7 +22,11 @@ function Router() {
         <Route path="/health" element={<Health/>} />
         <Route path="/giftcards" element={<GiftCards/>} />
         <Route path="/activitiesdeal" element={<ActivitiesDeal/>} />
+
+        <Route path="/products" element={<Products/>}/>
+
         <Route path="/checkout" element={<Checkout />} />
+
       </Routes>
     </>
   );
