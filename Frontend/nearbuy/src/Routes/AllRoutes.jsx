@@ -4,6 +4,7 @@ import ActivitiesDeal from "../Pages/ActivitiesDeal";
 import GiftCards from "../Pages/GiftCards";
 import Health from "../Pages/Health";
 import Home from "../Pages/Home";
+import Products from "../Pages/Products";
 
 function Router() {
   return (
@@ -13,6 +14,7 @@ function Router() {
         <Route path="/health" element={<Health/>} />
         <Route path="/giftcards" element={<GiftCards/>} />
         <Route path="/activitiesdeal" element={<ActivitiesDeal/>} />
+        <Route path="/products" element={<Products/>}/>
       </Routes>
     </>
   );
