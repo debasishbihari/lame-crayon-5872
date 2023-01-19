@@ -15,8 +15,7 @@ const Home = () => {
           margin="auto"
           display="flex"
           gap="15px"
-          maxH="150px"
-          border="1px solid black">
+          maxH="150px">
 
           <Card maxW="35%"
             justifyContent="center"
