@@ -17,11 +17,13 @@
     "firebase": "^9.15.0",
     "framer-motion": "^8.4.6",
     "react": "^18.2.0",
+    "react-app-store-badge": "^1.0.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scroll": "^1.8.9",
+    "react-store-badges": "^1.5.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2"
   },
