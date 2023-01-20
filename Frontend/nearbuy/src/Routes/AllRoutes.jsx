@@ -14,8 +14,8 @@ import SignUp from "../Pages/SignIn/SignUp";
 
 function Router() {
   return (
-    <>
-      <Routes >
+    < div style={{paddingBottom:"400px"}}>
+      <Routes  >
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
@@ -28,7 +28,7 @@ function Router() {
         <Route path="/checkout" element={<Checkout />} />
 
       </Routes>
-    </>
+    </div>
   );
 }
 export default Router;
