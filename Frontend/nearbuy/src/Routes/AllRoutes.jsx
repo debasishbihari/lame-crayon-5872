@@ -1,7 +1,7 @@
 import { Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import ActivitiesDeal from "../Pages/ActivitiesDeal";
-import Checkout from "../Pages/checkout";
+import Checkout from "../Pages/Checkout";
 import GiftCards from "../Pages/GiftCards";
 import Health from "../Pages/Health";
 import Home from "../Pages/Home";
