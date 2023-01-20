@@ -89,7 +89,7 @@ export default function Footer() {
       color={useColorModeValue('white', 'gray.200')} 
       bottom="0"
       maxH="400px"
-      pos="fixed"
+      mt={"10px"}
       w="100%"
       zIndex="99"
       transitionProperty="all" 

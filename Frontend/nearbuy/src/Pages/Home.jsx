@@ -30,7 +30,7 @@ const Home = () => {
 
   }
   return (
-    <Container maxW="100%" margin="auto" marginTop="125px" border="2px solid red">
+    <Container maxW="100%" margin="auto" marginTop="81px" >
       <Container maxW="100%"
         display="flex"
         maxH="150px"
@@ -253,7 +253,7 @@ const Home = () => {
 
 
 
-      Home
+      
     </Container>
   )
 }

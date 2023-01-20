@@ -12,7 +12,7 @@ function App() {
 
   return (
     
-    <Container maxW='100%' minH='100vh' margin='0px' marginTop="0" textAlign='center' padding='0px'  border="5px solid red">
+    <Container maxW='100%'  margin='0px' marginTop="0" textAlign='center' padding='0px'  >
      <Navbar/>
      <Router/>
      <Footer/>
