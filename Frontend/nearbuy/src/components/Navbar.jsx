@@ -41,10 +41,12 @@ const Navbar = () => {
     "Contacts",
   ];
   return (
-    
+
     <Container
       h="120px"
       // marginBottom="50px"
+      bg={"white"}
+      mt={"-5px"}
       pos="fixed"
       zIndex="2"
       padding="20px"
