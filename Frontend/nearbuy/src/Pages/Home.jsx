@@ -2,8 +2,29 @@ import { Container } from '@chakra-ui/react'
 import React from 'react'
 import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react'
 import Carousel from '../components/Carousel'
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
+  const navigate=useNavigate();
+
+  const handleDeals=(e)=>{
+   let val=e.target.innerText;
+   if(val==="Restaurant Deals" || val==="Buffet Deals" ){
+    localStorage.setItem("typeFilter","Restaurant Deals");
+    localStorage.setItem("actualType",val);
+   }
+   else if(val==="Salon Deals" || val==="Spa Deals"){
+    localStorage.setItem("typeFilter","Salon Deals");
+    localStorage.setItem("actualType",val);
+   }
+   else{
+    localStorage.setItem("typeFilter",val);
+    localStorage.setItem("actualType",val);
+   }
+
+   navigate("/products")
+   
+  }
   return (
     <Container maxW="100%" margin="auto" marginTop="125px" border="2px solid red">
       <Container maxW="100%"
@@ -20,7 +41,7 @@ const Home = () => {
           <Card maxW="35%"
             justifyContent="center"
             bg="transparent"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -30,7 +51,7 @@ const Home = () => {
                 ml="15px"
               />
               <Stack mt='6' spacing='3'>
-                <Heading size='md'>Resturant Deals</Heading>
+                <Heading size='md'>Restaurant Deals</Heading>
 
               </Stack>
             </CardBody>
@@ -38,7 +59,7 @@ const Home = () => {
 
           <Card maxW="35%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -46,8 +67,6 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="60%"
-                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Buffet Deals</Heading>
@@ -58,7 +77,7 @@ const Home = () => {
 
           <Card maxW="35%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -66,8 +85,6 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="70%"
-                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Salon Deals</Heading>
@@ -78,7 +95,7 @@ const Home = () => {
 
           <Card maxW="35%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -86,8 +103,6 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="90%"
-                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Spa Deals</Heading>
@@ -96,9 +111,9 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="30%"
+          <Card maxW="35%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -106,11 +121,9 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="70%"
-                maxH="70%"
               />
               <Stack mt='6' spacing='3'>
-                <Heading size='md'>Activities Deals</Heading>
+                <Heading size='md'>Activity Deals</Heading>
 
               </Stack>
             </CardBody>
@@ -118,7 +131,7 @@ const Home = () => {
 
           <Card maxW="12%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -127,7 +140,7 @@ const Home = () => {
                 borderRadius='lg'
                 ml="15px"
                 maxW="60%"
-                maxH="70%"
+                maxH="50%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Gift Cards</Heading>
@@ -138,7 +151,7 @@ const Home = () => {
 
           <Card maxW="12%"
             justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }}>
+            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
               justifyContent="center">
               <Image
@@ -147,7 +160,7 @@ const Home = () => {
                 borderRadius='lg'
                 ml="15px"
                 maxW="60%"
-                maxH="70%"
+                maxH="50%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Health</Heading>
