@@ -2,6 +2,7 @@ import { Container } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import ActivitiesDeal from "../Pages/ActivitiesDeal";
 import Checkout from "../Pages/Checkout";
+import Details from "../Pages/Details";
 import GiftCards from "../Pages/GiftCards";
 import Health from "../Pages/Health";
 import Home from "../Pages/Home";
@@ -26,7 +27,7 @@ function Router() {
         <Route path="/products" element={<Products/>}/>
 
         <Route path="/checkout" element={<Checkout />} />
-
+        <Route path="/products/:id" element={<Details/>}/>
       </Routes>
     </>
   );
