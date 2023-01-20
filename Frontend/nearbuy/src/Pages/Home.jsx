@@ -2,28 +2,32 @@ import { Container } from '@chakra-ui/react'
 import React from 'react'
 import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react'
 import Carousel from '../components/Carousel'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ProductSimple from '../components/Cards';
 
 const Home = () => {
-  const navigate=useNavigate();
 
-  const handleDeals=(e)=>{
-   let val=e.target.innerText;
-   if(val==="Restaurant Deals" || val==="Buffet Deals" ){
-    localStorage.setItem("typeFilter","Restaurant Deals");
-    localStorage.setItem("actualType",val);
-   }
-   else if(val==="Salon Deals" || val==="Spa Deals"){
-    localStorage.setItem("typeFilter","Salon Deals");
-    localStorage.setItem("actualType",val);
-   }
-   else{
-    localStorage.setItem("typeFilter",val);
-    localStorage.setItem("actualType",val);
-   }
 
-   navigate("/products")
-   
+  
+  const navigate = useNavigate();
+
+  const handleDeals = (e) => {
+    let val = e.target.innerText;
+    if (val === "Restaurant Deals" || val === "Buffet Deals") {
+      localStorage.setItem("typeFilter", "Restaurant Deals");
+      localStorage.setItem("actualType", val);
+    }
+    else if (val === "Salon Deals" || val === "Spa Deals") {
+      localStorage.setItem("typeFilter", "Salon Deals");
+      localStorage.setItem("actualType", val);
+    }
+    else {
+      localStorage.setItem("typeFilter", val);
+      localStorage.setItem("actualType", val);
+    }
+
+    navigate("/products")
+
   }
   return (
     <Container maxW="100%" margin="auto" marginTop="125px" border="2px solid red">
@@ -178,8 +182,8 @@ const Home = () => {
         <Carousel />
       </Container>
 
-      <Container maxW="100%" marginTop="50px" >
-        <Carousel />
+      <Container maxW="100%" marginTop="50px" display={"flex"}>
+       
       </Container>
 
       <Container maxW="100%" marginTop="50px" >
@@ -246,8 +250,8 @@ const Home = () => {
         <Carousel />
       </Container>
 
-      
-      
+
+
 
       Home
     </Container>
