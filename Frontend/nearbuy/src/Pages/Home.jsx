@@ -1,7 +1,8 @@
 import { Container } from '@chakra-ui/react'
 import React from 'react'
-import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react';
-import {useNavigate } from 'react-router-dom'
+import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react'
+import Carousel from '../components/Carousel'
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
   const navigate=useNavigate();
@@ -28,7 +29,6 @@ const Home = () => {
     <Container maxW="100%" margin="auto" marginTop="125px" border="2px solid red">
       <Container maxW="100%"
         display="flex"
-
         maxH="150px"
         boxShadow="base">
         <Container
@@ -129,7 +129,7 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="35%"
+          <Card maxW="12%"
             justifyContent="center"
             _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
@@ -139,6 +139,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                maxW="60%"
+                maxH="50%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Gift Cards</Heading>
@@ -147,7 +149,7 @@ const Home = () => {
             </CardBody>
           </Card>
 
-          <Card maxW="35%"
+          <Card maxW="12%"
             justifyContent="center"
             _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
             <CardBody
@@ -157,8 +159,8 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                // maxW="60%"
-                // maxH="50%"
+                maxW="60%"
+                maxH="50%"
               />
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>Health</Heading>
@@ -170,7 +172,84 @@ const Home = () => {
         </Container>
 
       </Container>
+
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
       
+      
+
+      Home
     </Container>
   )
 }
