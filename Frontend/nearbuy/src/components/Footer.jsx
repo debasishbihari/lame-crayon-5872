@@ -88,15 +88,17 @@ export default function Footer() {
       bg={useColorModeValue('black', 'gray.900')}
       color={useColorModeValue('white', 'gray.200')} 
       bottom="0"
-      pos="sticky"
+      maxH="400px"
+      pos="fixed"
       w="100%"
+      zIndex="99"
       transitionProperty="all" 
       transitionTimingFunction= "cubic-bezier(0.4, 0, 0.2, 1)"
       transitionDuration= "500ms"
-      className={`header ${ scrollDirection === "up" ? "hide" : "show"}`}
+      display={`${ scrollDirection === "down" ? "none" : "block"}`}
       >
         <Container as={Stack} maxW={'1000%'} bgColor="#333">
-            <Container as={Stack} maxW={'70%'} bgColor="#333">
+            <Container as={Stack} maxW={'80%'} bgColor="#333">
                 <h1 style={{fontWeight:"bolder", fontSize:"20px"}}>Amazing offers available on nearbuy</h1>
                 <h3>
                     nearbuy helps you discover the best things to do, eat and buy – wherever you are! Make every day awesome with nearbuy. Dine at the finest restaurants, relax at the best spas, pamper yourself with exciting wellness and shopping offers or just explore your city intimately… you will always find a lot more to do with nearbuy. From tattoo parlors to music concerts, movie tickets to theme parks, everything you want is now within reach. Don't stop yet! Take it wherever you go with the nearbuy mobile app. Based on your location and preference, our smart search engine will suggest new things to explore every time you open the app. What's more, with offers on everything around you... you are sure to try something new every time.
@@ -104,8 +106,8 @@ export default function Footer() {
             </Container>
         </Container>
         
-      <Container as={Stack} maxW={'6xl'} py={10}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+      <Container as={Stack} maxW={'6xl'} py={2}>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={3}>
           <Stack align={'flex-start'}>
             <ListHeader>Company</ListHeader>
             <Link href={'#'}>About Us</Link>
@@ -148,7 +150,7 @@ export default function Footer() {
         <Container
           as={Stack}
           maxW={'6xl'}
-          py={4}
+          py={2}
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
           justify={{ md: 'space-between' }}
