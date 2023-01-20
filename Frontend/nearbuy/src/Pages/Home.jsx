@@ -1,13 +1,13 @@
 import { Container } from '@chakra-ui/react'
 import React from 'react'
 import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react'
+import Carousel from '../components/Carousel'
 
 const Home = () => {
   return (
     <Container maxW="100%" margin="auto" marginTop="125px" border="2px solid red">
       <Container maxW="100%"
         display="flex"
-
         maxH="150px"
         boxShadow="base">
         <Container
@@ -159,6 +159,83 @@ const Home = () => {
         </Container>
 
       </Container>
+
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      <Container maxW="100%" marginTop="50px" >
+        <Carousel />
+      </Container>
+
+      
+      
+
       Home
     </Container>
   )
