@@ -75,12 +75,19 @@
 }
 
 .viewBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #2EEEF7;
     padding: 8px 40px;
     font-size: large;
     color: white;
     background-color: rgb(35, 206, 241);
     border-radius: 3px;
+}
+.viewBtn:hover{
+    background-color: #89e8f9;
+    color: #37aef8;
 }
 
 .imageCont{
