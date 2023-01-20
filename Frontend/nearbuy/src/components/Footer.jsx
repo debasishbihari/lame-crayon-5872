@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 
 import ReactStoreBadges from 'react-store-badges'
@@ -50,14 +51,49 @@ const SocialButton = ({
   );
 };
 
+
+
+
+
+function useScrollDirection() {
+    const [scrollDirection, setScrollDirection] = useState(null);
+  
+    useEffect(() => {
+      let lastScrollY = window.pageYOffset;
+  
+      const updateScrollDirection = () => {
+        const scrollY = window.pageYOffset;
+        const direction = scrollY > lastScrollY ? "up" : "down";
+        if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+          setScrollDirection(direction);
+        }
+        lastScrollY = scrollY > 0 ? scrollY : 0;
+      };
+      window.addEventListener("scroll", updateScrollDirection); // add event listener
+      return () => {
+        window.removeEventListener("scroll", updateScrollDirection); // clean up
+      }
+    }, [scrollDirection]);
+  
+    return scrollDirection;
+  };
+
 export default function Footer() {
+
+    const scrollDirection = useScrollDirection();
+
+
   return (
-  <Box
+  <Box 
       bg={useColorModeValue('black', 'gray.900')}
       color={useColorModeValue('white', 'gray.200')} 
       bottom="0"
-      pos="fixed"
+      pos="sticky"
       w="100%"
+      transitionProperty="all" 
+      transitionTimingFunction= "cubic-bezier(0.4, 0, 0.2, 1)"
+      transitionDuration= "500ms"
+      className={`header ${ scrollDirection === "up" ? "hide" : "show"}`}
       >
         <Container as={Stack} maxW={'1000%'} bgColor="#333">
             <Container as={Stack} maxW={'70%'} bgColor="#333">
