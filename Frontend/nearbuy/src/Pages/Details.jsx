@@ -1,14 +1,20 @@
-import { Box, Button, Heading, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
+import { Box, Button, Heading, SkeletonCircle, SkeletonText, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { BiCart } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import style from "../Pages/Details.module.css";
 import styles from "../Pages/Products.module.css";
+import { addToCart } from '../Redux/Cart/Cart.action';
 let st=" > "
 const Details = () => {
+  const dispatch=useDispatch();
+  const toast=useToast();
+  let cartVal=useSelector((state)=>state.cartsManager);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [images,setImages]=useState([]);
@@ -25,11 +31,16 @@ const Details = () => {
         let data = res.data;
 
         setProduct(data);
-        setImages(data.photos);
+        setImages(data.photos?data.photos:[]);
     } catch (error) {
         setLoading(false);
         console.log(error)
     }
+}
+
+const handleCart=(product)=>{
+   dispatch(addToCart(product));
+   
 }
 
 
@@ -38,8 +49,9 @@ useEffect(() => {
   getProduct(id)
 }, []);
 
-console.log(product);
-console.log(images);
+// console.log(product);
+// console.log(images);
+console.log(cartVal);
 
 if (loading) {
   return <div className={styles.skeleton}>
@@ -60,6 +72,26 @@ if (loading) {
   </Box>
   </div>
 }
+
+ else if(cartVal.isAdded){
+  toast({
+    title: 'Cart Success.',
+    description: "Item added to cart.",
+    status: 'success',
+    duration: 4000,
+    isClosable: true,
+  })
+ }
+
+ else if(cartVal.isError){
+  toast({
+    title: 'Cart Error.',
+    description: "Item already Exists in cart",
+    status: 'error',
+    duration: 4000,
+    isClosable: true,
+  })
+ }
 
   return (
     <div className={style.DetailCont}>
@@ -90,7 +122,7 @@ if (loading) {
              <p style={{"color":"gray"}}>+2 more Deals</p>
              <div style={{"color":"gray","fontSize":"17px","padding":"10px","marginTop":"7px"}}><span> Starts From : </span> <span style={{"fontWeight":"bold","color":"black"}}>₹{product.price}</span></div>
           </div>
-          <button className={style.viewBtn}>VIEW</button>
+          <button className={style.viewBtn} onClick={()=>handleCart(product)}>ADD&nbsp;<BiCart/></button>
   </div>:<div className={style.imageCont}>
                 <img src={product.img} alt="img" onClick={()=>setImage(product.img)}/>
                 {
