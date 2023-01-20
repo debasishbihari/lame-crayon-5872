@@ -43,18 +43,19 @@ const Navbar = () => {
   return (
 
     <Container
-      h="120px"
+      h="80px"
       // marginBottom="50px"
       bg={"white"}
-      mt={"-5px"}
+      mt={"-83px"}
       pos="fixed"
-      zIndex="2"
+      zIndex="99"
       padding="20px"
       maxW="100%"
       display="flex"
       justifyContent="space-evenly"
       color="black"
       shadow="base"
+
     >
       <Box
         maxW="20%"
@@ -92,10 +93,10 @@ const Navbar = () => {
           <Image
             alt={"Logo"}
             onClick={() => GoTo("/")}
-            height="100px"
+            height="60px"
             src={logo}
             cursor="pointer"
-            w={"350px"}
+            w={"250px"}
           />
         </Box>
 
@@ -104,17 +105,17 @@ const Navbar = () => {
       <Box
         maxW="70%"
         marginLeft="0px"
-        padding="15px"
+        padding="2px"
       >
         <InputGroup
           // display={{ base: "1", md: "inline-flex" }}
-          w={"700px"}
+          maxW={"600px"}
           justifyItems={"center"}
           width={{
-            xl: "800px",
-            lg: "500px",
+            xl: "600px",
+            lg: "400px",
             md: "300px",
-            base: "100px",
+            base: "null",
           }}
         >
           <InputLeftElement children={<SearchIcon />} />

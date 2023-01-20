@@ -14,7 +14,7 @@ import SignUp from "../Pages/SignIn/SignUp";
 
 function Router() {
   return (
-    < div style={{paddingBottom:"400px"}}>
+    < div >
       <Routes  >
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
