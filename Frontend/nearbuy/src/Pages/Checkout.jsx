@@ -2,19 +2,35 @@ import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { clearCart, getCart } from "../Redux/Cart/Cart.action";
 import { useSelector } from "react-redux";
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 
 const Checkout = () => {
   const dispatch = useDispatch()
-
+  const toast=useToast();
   const cart = useSelector((store)=> store.cartsManager)
 
   const deleteAllCart = ()=>{
     dispatch(clearCart())
     if(cart.cart.length==0){
-      alert("You dont have any item in your cart")
+      // alert("You dont have any item in your cart")
+      toast({
+        position:"top",
+        title: 'Cart is empty.',
+        description: "You dont have any item in your cart.",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
     }else{
-      alert("Congratulations.. your order has been placed")
+      // alert("Congratulations.. your order has been placed")
+      toast({
+        position:"top",
+        title: 'Success.',
+        description: "Congratulations.. your order has been placed.",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
     }
     
   }
