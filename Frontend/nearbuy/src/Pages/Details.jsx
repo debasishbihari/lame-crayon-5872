@@ -1,11 +1,12 @@
-import { Box, Button, Heading, SkeletonCircle, SkeletonText, useToast } from '@chakra-ui/react';
+import { ArrowBackIcon } from '@chakra-ui/icons';
+import { Box, Button, Heading, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import style from "../Pages/Details.module.css";
 import styles from "../Pages/Products.module.css";
@@ -13,7 +14,6 @@ import { addToCart } from '../Redux/Cart/Cart.action';
 let st=" > "
 const Details = () => {
   const dispatch=useDispatch();
-  const toast=useToast();
   let cartVal=useSelector((state)=>state.cartsManager);
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
@@ -73,25 +73,9 @@ if (loading) {
   </div>
 }
 
- else if(cartVal.isAdded){
-  toast({
-    title: 'Cart Success.',
-    description: "Item added to cart.",
-    status: 'success',
-    duration: 4000,
-    isClosable: true,
-  })
- }
 
- else if(cartVal.isError){
-  toast({
-    title: 'Cart Error.',
-    description: "Item already Exists in cart",
-    status: 'error',
-    duration: 4000,
-    isClosable: true,
-  })
- }
+
+
 
   return (
     <div className={style.DetailCont}>
@@ -130,8 +114,15 @@ if (loading) {
                 }
           </div> 
          }
+
+
           
       </div>
+      <Box display="flex" alignItems="flex-start" w="85%" m="auto">
+      <Link to="/products"><Button leftIcon={<ArrowBackIcon/>} colorScheme='cyan' variant='outline' >
+    Go Back
+  </Button></Link>
+      </Box>
     </div>
   )
 }
