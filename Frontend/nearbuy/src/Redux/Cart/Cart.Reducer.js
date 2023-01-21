@@ -7,9 +7,6 @@ import { ADD_CART_ERROR, ADD_CART_LOADING, ADD_CART_SUCCESS } from "./Cart.type"
 const initialState ={
     isLoading: false,
     isError:false,
-
-    data:[]
-
     isAdded:false,
     cart:[]
 
@@ -35,13 +32,13 @@ export const CartReducer = (state=initialState,{type,payload})=>{
             return{
                 ...state,
                 isLoading:false,
-                data:payload
+                cart:payload
             }
         }
         case REMOVE_CART:{
             return{
                 ...state,
-                cart: state.data.filter((item)=> item!= payload)
+                cart: state.cart.filter((item)=> item!= payload)
             }
         }
 

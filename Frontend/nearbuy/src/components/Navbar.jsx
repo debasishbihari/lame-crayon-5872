@@ -24,6 +24,7 @@ import { Flex } from "@chakra-ui/react";
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.jpeg";
 import { transform } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { getDisclosureProps, getButtonProps } = useDisclosure();
@@ -40,6 +41,13 @@ const Navbar = () => {
     "Statistics",
     "Contacts",
   ];
+
+  const navigate = useNavigate()
+
+  const GoToHome=()=>{
+    navigate("/")
+  }
+
   return (
 
     <Container
@@ -90,14 +98,17 @@ const Navbar = () => {
           w={{ lg: "500px", md: "120px", sm: "120px" }}
           display={["none", "none", "flex", "flex", "flex"]}
         >
-          <Image
-            alt={"Logo"}
-            onClick={() => GoTo("/")}
-            height="60px"
-            src={logo}
-            cursor="pointer"
-            w={"250px"}
+          
+            <Image
+              alt={"Logo"}
+              onClick={GoToHome}
+              height="60px"
+              src={logo}
+              cursor="pointer"
+              w={"250px"}
           />
+         
+          
         </Box>
 
       </Box>
