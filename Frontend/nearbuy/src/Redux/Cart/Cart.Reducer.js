@@ -1,5 +1,5 @@
 
-import { GET_CART_ERROR, GET_CART_LOADING, GET_CART_SUCCESS, REMOVE_CART } from "./Cart.type"
+import { CART_CLEAN, GET_CART_ERROR, GET_CART_LOADING, GET_CART_SUCCESS, REMOVE_CART } from "./Cart.type"
 
 import { ADD_CART_ERROR, ADD_CART_LOADING, ADD_CART_SUCCESS } from "./Cart.type"
 
@@ -9,7 +9,6 @@ const initialState ={
     isError:false,
     isAdded:false,
     cart:[]
-
 }
 
 export const CartReducer = (state=initialState,{type,payload})=>{
@@ -38,10 +37,17 @@ export const CartReducer = (state=initialState,{type,payload})=>{
         case REMOVE_CART:{
             return{
                 ...state,
-                cart: state.cart.filter((item)=> item!= payload)
+                // cart: state.cart.filter((item)=> item!= payload),
+                isLoading:false
             }
         }
-
+        case CART_CLEAN:{
+            return{
+                ...state,
+                isLoading:false,
+                cart:[]
+            }
+        }
           case ADD_CART_LOADING:{
             return{
                 ...state,

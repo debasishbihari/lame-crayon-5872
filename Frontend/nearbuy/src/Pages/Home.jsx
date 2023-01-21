@@ -34,13 +34,13 @@ const Home = () => {
       <Container maxW="100%"
         display="flex"
         maxH="150px"
-        boxShadow="base">
+        >
         <Container
           maxW="80%"
           margin="auto"
           display="flex"
           gap="15px"
-          maxH="150px">
+          maxH="100px">
 
           <Card maxW="35%"
             justifyContent="center"
@@ -51,10 +51,13 @@ const Home = () => {
               <Image
                 src='https://img4.nbstatic.in/tr:w-/60af2a061e2731000ba1096a.png'
                 alt='hgg'
-                borderRadius='lg'
+                borderRadius='md'
                 ml="15px"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Restaurant Deals</Heading>
 
               </Stack>
@@ -71,8 +74,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Buffet Deals</Heading>
 
               </Stack>
@@ -89,8 +95,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Salon Deals</Heading>
 
               </Stack>
@@ -107,8 +116,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Spa Deals</Heading>
 
               </Stack>
@@ -125,8 +137,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Activity Deals</Heading>
 
               </Stack>
@@ -143,10 +158,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="60%"
-                maxH="50%"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Gift Cards</Heading>
 
               </Stack>
@@ -163,10 +179,11 @@ const Home = () => {
                 alt='hgg'
                 borderRadius='lg'
                 ml="15px"
-                maxW="60%"
-                maxH="50%"
+                mt="20px"
+                maxW="35%"
+                maxH="35%"
               />
-              <Stack mt='6' spacing='3'>
+              <Stack mt='3' spacing='2'>
                 <Heading size='md'>Health</Heading>
 
               </Stack>

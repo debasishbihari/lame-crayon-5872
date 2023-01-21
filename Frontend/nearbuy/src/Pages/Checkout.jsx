@@ -1,16 +1,23 @@
 import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
-import { getCart } from "../Redux/Cart/Cart.action";
+import { clearCart, getCart } from "../Redux/Cart/Cart.action";
 import { useSelector } from "react-redux";
 import { Flex } from "@chakra-ui/react";
 
 const Checkout = () => {
-  // const [cart, setCart] = useState([])
   const dispatch = useDispatch()
 
-  // const navigate = useNavigate()
-
   const cart = useSelector((store)=> store.cartsManager)
+
+  const deleteAllCart = ()=>{
+    dispatch(clearCart())
+    if(cart.cart.length==0){
+      alert("You dont have any item in your cart")
+    }else{
+      alert("Congratulations.. your order has been placed")
+    }
+    
+  }
 
   console.log(cart)
    useEffect(()=>{
@@ -19,7 +26,7 @@ const Checkout = () => {
 
   const initialValue = 0;
   const totalPrice = cart.cart.reduce(
-  (accumulator, currentValue) => accumulator.price + currentValue
+  (accumulator, currentValue) => accumulator + currentValue.price, initialValue
 );
 
 console.log(initialValue, totalPrice)
@@ -32,9 +39,9 @@ console.log(initialValue, totalPrice)
       <div style={{
         display: "flex",
         marginTop:"80px",
-        border:"2px solid blue",
+        // border:"2px solid blue",
         backgroundColor: "rgb(215, 225, 233)"}}>
-        <div style={{width:"600px",height:"700px",marginTop:"50px",marginLeft: "20px"}}>
+        <div style={{width:"600px",height:"auto",marginTop:"50px",marginLeft: "20px",marginBottom:"30px"}}>
             <div ><h2 style={{ marginLeft:"1%",fontSize:"25px" }}>Order summary</h2>
           {cart.cart.map((el)=>(               
                <div key={el.id} style={{
@@ -59,7 +66,7 @@ console.log(initialValue, totalPrice)
               <hr />
             </div>
         </div>       
-    
+   
           
             ))
           }
@@ -73,12 +80,18 @@ console.log(initialValue, totalPrice)
               marginLeft: "20px",
               backgroundColor: "white",
               display:"flex",
-              justifyContent:"space-around"
+              justifyContent:"space-around",
+              flexDirection:"column"
             }}
           >
-            <p style={{marginTop:"20px"}}>Subtotal: (Qty.) {cart.cart.length}</p> 
-            <h2 style={{marginLeft:"150px", marginTop:"20px"}}>Total :</h2>  
-            <hr />
+            <div style={{display:"flex", "justifyContent":"space-around"}}>
+              <p style={{fontWeight:"700", fontSize:"18px"}}>Subtotal: (Qty.) {cart.cart.length}</p> 
+              <h2 style={{marginLeft:"150px", fontSize:"18px",fontWeight:"700"}}>₹ {totalPrice}</h2> 
+            </div>             
+            <div style={{border:"1px solid black"}}></div>
+            <div>
+              <h2 style={{ fontSize:"20px",fontWeight:"700"}}>Total Price: ₹ {totalPrice}</h2>
+            </div>
           </div>
         </div>
         
@@ -151,10 +164,8 @@ console.log(initialValue, totalPrice)
                 />
               </button>
               <br />
-              <button
-                onClick={() =>
-                  alert("Congratulation.. Your order has been placed")
-                }
+              <button 
+                onClick={deleteAllCart}
                 style={{
                   height: "30px",
                   marginTop: "20px",

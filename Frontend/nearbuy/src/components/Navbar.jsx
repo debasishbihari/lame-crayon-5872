@@ -3,7 +3,6 @@ import {
   Container,
   Box,
   Heading,
-  Link,
   Icon,
   Image,
   IconButton,
@@ -20,14 +19,20 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
+import { BiCart } from 'react-icons/bi';
+import { Link } from "react-router-dom";
 
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.jpeg";
 import { transform } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Cart from "../Pages/Cart";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { getDisclosureProps, getButtonProps } = useDisclosure();
+
+  const cart = useSelector((store)=> store.cartsManager.cart)
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -146,7 +151,14 @@ const Navbar = () => {
             _hover={{ color: "black", bg: "red.500", border: "2px solid red" }}>Search</Button>
 
         </InputGroup>
+          
       </Box>
+          <div>
+            <Link to="/cart">
+              <span style={{fontSize:"18px",color:"red", fontWeight:"600" }}>{cart.length}</span>             
+              <h2 style={{fontSize:"40px",marginTop:"-17px", color:"green"}}><BiCart /></h2>
+            </Link>
+          </div>
     </Container>
   );
 };
