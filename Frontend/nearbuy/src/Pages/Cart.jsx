@@ -1,44 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from "../components/Navbar"
-// import {useSelector} from "react-redux"
-// import Footer from '../components/Footer'
-import axios from 'axios'
+
+import {useDispatch, useSelector} from "react-redux"
+
 import "./Cart.css"
 import { useNavigate } from 'react-router-dom'
-import Footer from '../components/Footer'
+import { getCart } from '../Redux/Cart/Cart.action'
+
 
 const Cart = () => {
-  const [cart, setCart] = useState([])
-  const [item, setRemoveItem] = useState()
-  const navigate = useNavigate()
+  // const [cart, setCart] = useState([])
 
-   // const cart = useSelector((store)=> store.cartManager.data)
-   const getData = async() =>{
-    let res = await axios.get("https://nearbuy-mock-server.onrender.com/carts")
-    // console.log("data",res.data)
-     setCart(res.data)
-   }
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+   const cart = useSelector((store)=> store.cartsManager.cart)
+  //  const getData = async() =>{
+  //   let res = await axios.get("https://nearbuy-mock-server.onrender.com/carts")
+  //   // console.log("data",res.data)
+  //    setCart(res.data)
+  //  }
 
    const checkout =()=>{
-      navigate("./checkout")
+      navigate("/checkout")
    }
 
    useEffect(()=>{
-    getData(cart)
+    dispatch(getCart())
    },[])
 
-  // console.log("cart",cart)
+  console.log("cart",cart)
 
   return (
     <>
-    
-      <Navbar />
-      <div>
+      <div style={{marginTop:"80px"}}>
           
           <h1  className='heading'>Cart Page</h1>
          
             {
-              cart.map((el)=>(
+              cart?.map((el)=>(
                 <div className='cart-div' key={el.id}>
                   <img style={{width:"50%", marginLeft:"-100px"}} src={el.img} alt="" />
                   <div className='data-div'>
@@ -55,7 +54,6 @@ const Cart = () => {
             <button onClick={checkout} className='checkout'>Checkout</button>
           </div>
       </div>
-      <Footer />
     </>
   )
 }

@@ -55,32 +55,32 @@ const SocialButton = ({
 
 
 
-function useScrollDirection() {
-    const [scrollDirection, setScrollDirection] = useState(null);
+// function useScrollDirection() {
+//     const [scrollDirection, setScrollDirection] = useState(null);
   
-    useEffect(() => {
-      let lastScrollY = window.pageYOffset;
+//     useEffect(() => {
+//       let lastScrollY = window.pageYOffset;
   
-      const updateScrollDirection = () => {
-        const scrollY = window.pageYOffset;
-        const direction = scrollY > lastScrollY ? "up" : "down";
-        if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
-          setScrollDirection(direction);
-        }
-        lastScrollY = scrollY > 0 ? scrollY : 0;
-      };
-      window.addEventListener("scroll", updateScrollDirection); // add event listener
-      return () => {
-        window.removeEventListener("scroll", updateScrollDirection); // clean up
-      }
-    }, [scrollDirection]);
+//       const updateScrollDirection = () => {
+//         const scrollY = window.pageYOffset;
+//         const direction = scrollY > lastScrollY ? "up" : "down";
+//         if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+//           setScrollDirection(direction);
+//         }
+//         lastScrollY = scrollY > 0 ? scrollY : 0;
+//       };
+//       window.addEventListener("scroll", updateScrollDirection); // add event listener
+//       return () => {
+//         window.removeEventListener("scroll", updateScrollDirection); // clean up
+//       }
+//     }, [scrollDirection]);
   
-    return scrollDirection;
-  };
+//     return scrollDirection;
+//   };
 
 export default function Footer() {
 
-    const scrollDirection = useScrollDirection();
+    // const scrollDirection = useScrollDirection();
 
 
   return (
@@ -95,7 +95,7 @@ export default function Footer() {
       transitionProperty="all" 
       transitionTimingFunction= "cubic-bezier(0.4, 0, 0.2, 1)"
       transitionDuration= "500ms"
-      display={`${ scrollDirection === "down" ? "none" : "block"}`}
+      // display={`${ scrollDirection === "down" ? "none" : "block"}`}
       >
         <Container as={Stack} maxW={'1000%'} bgColor="#333">
             <Container as={Stack} maxW={'80%'} bgColor="#333">

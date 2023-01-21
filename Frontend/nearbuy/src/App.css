@@ -1,12 +1,5 @@
 
-.main{
-  display: flex;
-  /* border: 1px solid black; */
-  background-color: rgb(215, 225, 233);
-}
-.main .left-box{
-  width: 450px;
-  height: 700px;
-  margin-top: 120px;
-  margin-left: 20px;
+*{
+  margin: 0px;
+  padding: 0px;
 }

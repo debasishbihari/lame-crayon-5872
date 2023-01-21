@@ -6,7 +6,7 @@ import { productReducer } from "./Products/Products.Reducer";
 export const rootReducer=combineReducers({
     productsManager:productReducer,
 
-    cartManager: CartReducer
+    // cartManager: CartReducer
 
     cartsManager:CartReducer
 
