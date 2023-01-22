@@ -47,7 +47,7 @@ export default function ImageSlider({data}) {
 
   return (
     <Box
-      mt="10px" maxH={"150px"}
+      mt="10px" maxH={"200px"}
       position={"relative"}
       margin="auto"
       overflow={"hidden"}
@@ -98,13 +98,14 @@ export default function ImageSlider({data}) {
         {data?.map((el) => (
           <Card key={el.id}
           textAlign="center"
-          padding={2}
+          padding={5}
+          cursor={"pointer"}
           border="2px solid grey"
           mt="5px"
           maxH="250px"
           onClick={()=>handleClick(el)}
-          maxW={"120px"}>
-           <Image  src={el.img} maxW="80px" maxH={"100px"} m="30px auto 40px auto" />
+          maxW={"130px"}>
+           <Image  src={el.img} maxW="100px" maxH={"150px"} m="30px auto"  />
        </Card>
         ))}
       </Slider>
