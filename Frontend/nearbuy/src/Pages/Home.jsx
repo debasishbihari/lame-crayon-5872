@@ -171,7 +171,7 @@ const Home = () => {
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Everything Buffet</Text>
       </Container>
 
-      <Container maxW="70%" margin="auto" marginTop="20px" display="flex" gap="20px" >
+      <Container maxW="90%" margin="auto" marginTop="20px" display="flex" gap="20px" >
         <Image src='https://img4.nbstatic.in/tr:w-350/63285c2fc10843000be89e59.jpg' alt="buffe" maxW="300px" maxH="170px" />
         <Image src='https://img4.nbstatic.in/tr:w-350/63285c40c10843000be89e5a.jpg' alt="buffe" maxW="300px" maxH="170px" />
       </Container>
