@@ -10,19 +10,19 @@ import { CartReducer } from "./Cart/Cart.Reducer";
 import { productReducer } from "./Products/Products.Reducer";
 
 
-export const rootReducer=combineReducers({
-    productsManager:productReducer,
+// export const rootReducer=combineReducers({
+//     productsManager:productReducer,
 
-    // cartManager: CartReducer
+//     // cartManager: CartReducer
 
-    cartsManager:CartReducer
+    
 
-})
+// })
 
 const root_reducer = combineReducers({
   productsManager:productReducer,
   auth: authReducer,
-
+  cartsManager:CartReducer
 });
 
 const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;

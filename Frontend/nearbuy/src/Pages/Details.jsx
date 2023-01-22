@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 
 import style from "../Pages/Details.module.css";
 import styles from "../Pages/Products.module.css";
@@ -22,6 +23,7 @@ const Details = () => {
   const[isAbout,setIsAbout]=useState(true);
   const params=useParams();
   let id = Number(params.id);
+  const toast = useToast()
 
   const getProduct = async (id) => {
     try {
@@ -40,10 +42,25 @@ const Details = () => {
 
 const handleCart=(product)=>{
    dispatch(addToCart(product));
-   
+   if(cartVal.isAdded){
+    toast({
+      title: 'Cart Success.',
+      description: "Items Added to cart.",
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    })
+   }
+   else if(cartVal.isError){
+    toast({
+      title: 'Cart Error.',
+      description: "Item already exists in the cart.",
+      status: 'error',
+      duration: 2000,
+      isClosable: true,
+    })
+   }
 }
-
-
 
 useEffect(() => {
   getProduct(id)
@@ -72,10 +89,6 @@ if (loading) {
   </Box>
   </div>
 }
-
-
-
-
 
   return (
     <div className={style.DetailCont}>

@@ -5,14 +5,14 @@ import {useDispatch, useSelector} from "react-redux"
 import "./Cart.css"
 import { useNavigate } from 'react-router-dom'
 import { getCart, removeCart } from '../Redux/Cart/Cart.action'
-
+import Skeleton  from '../components/Skeleton'
 
 const Cart = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const cart = useSelector((store)=> store.cartsManager.cart)
+  const {cart, isLoading} = useSelector((store)=> store.cartsManager)
 
   const deleteItem = (id)=>{
     dispatch(getCart())
@@ -27,7 +27,11 @@ const Cart = () => {
     dispatch(getCart())
    },[])
 
-  // console.log("cart",cart)
+  console.log("cart",cart)
+
+  if (isLoading) {
+    return  <Skeleton />
+  }
 
   return (
     <>

@@ -2,16 +2,17 @@ import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { clearCart, getCart } from "../Redux/Cart/Cart.action";
 import { useSelector } from "react-redux";
-import { Flex, useToast } from "@chakra-ui/react";
+import {  useToast } from "@chakra-ui/react";
+import Skeleton from "../components/Skeleton";
 
 const Checkout = () => {
   const dispatch = useDispatch()
   const toast=useToast();
-  const cart = useSelector((store)=> store.cartsManager)
+  const {cart, isLoading} = useSelector((store)=> store.cartsManager)
 
   const deleteAllCart = ()=>{
     dispatch(clearCart())
-    if(cart.cart.length==0){
+    if(cart.length==0){
       // alert("You dont have any item in your cart")
       toast({
         position:"top",
@@ -41,15 +42,15 @@ const Checkout = () => {
    },[])
 
   const initialValue = 0;
-  const totalPrice = cart.cart.reduce(
+  const totalPrice = cart.reduce(
   (accumulator, currentValue) => accumulator + currentValue.price, initialValue
 );
 
 console.log(initialValue, totalPrice)
 
-   if(cart.isLoading){
-    <h1>...Loading</h1>
-   }
+if (isLoading) {
+  return  <Skeleton />
+}
   return (
     <>
       <div style={{
@@ -59,7 +60,7 @@ console.log(initialValue, totalPrice)
         backgroundColor: "rgb(215, 225, 233)"}}>
         <div style={{width:"600px",height:"auto",marginTop:"50px",marginLeft: "20px",marginBottom:"30px"}}>
             <div ><h2 style={{ marginLeft:"1%",fontSize:"25px" }}>Order summary</h2>
-          {cart.cart.map((el)=>(               
+          {cart.map((el)=>(               
                <div key={el.id} style={{
                 width: "85%",
                 // border: "2px solid red",
@@ -101,7 +102,7 @@ console.log(initialValue, totalPrice)
             }}
           >
             <div style={{display:"flex", "justifyContent":"space-around"}}>
-              <p style={{fontWeight:"700", fontSize:"18px"}}>Subtotal: (Qty.) {cart.cart.length}</p> 
+              <p style={{fontWeight:"700", fontSize:"18px"}}>Subtotal: (Qty.) {cart.length}</p> 
               <h2 style={{marginLeft:"150px", fontSize:"18px",fontWeight:"700"}}>₹ {totalPrice}</h2> 
             </div>             
             <div style={{border:"1px solid black"}}></div>
