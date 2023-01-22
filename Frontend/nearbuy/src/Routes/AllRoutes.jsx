@@ -10,8 +10,8 @@ import Home from "../Pages/Home";
 
 import Products from "../Pages/Products";
 import SignIn from "../Pages/SignIn/SignIn";
-import SignUp from "../Pages/SignIn/SignUp";
-import PrivateRoute from "./PrivateRoute";
+import SignUp from "../Pages/SignIn/SignUp"
+import PrivateRoute from "./PrivateRoute"
 
 
 
@@ -28,9 +28,8 @@ function Router() {
         <Route path="/health" element={<Health/>} />
         <Route path="/giftcards" element={<GiftCards/>} />
         <Route path="/activitiesdeal" element={<ActivitiesDeal/>} />
-
         <Route path="/products" element={<Products/>}/>
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<PrivateRoute> <Cart /></PrivateRoute>} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products/:id" element={<Details/>}/>
       </Routes>
