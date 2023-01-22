@@ -7,18 +7,22 @@ import Health from "../Pages/Health";
 import Home from "../Pages/Home";
 
 import Products from "../Pages/Products";
-
-import Login from "../Pages/SignIn/Login";
+import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignIn/SignUp";
+import PrivateRoute from "./PrivateRoute";
+
+
+
+
 
 
 function Router() {
   return (
-    < div >
+    < div>
       <Routes  >
         <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="/login" element={<SignIn/>} />
         <Route path="/health" element={<Health/>} />
         <Route path="/giftcards" element={<GiftCards/>} />
         <Route path="/activitiesdeal" element={<ActivitiesDeal/>} />

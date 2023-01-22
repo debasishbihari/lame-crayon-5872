@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Container,
   Box,
@@ -18,14 +18,59 @@ import {
   Spacer,
   Button,
   Divider,
+  useToast
 } from "@chakra-ui/react";
+import {
+  FaUserCircle,
+  FaUser,
+  FaUserPlus,
+  FaRegUser,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.jpeg";
 import { transform } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { GetItem, setItem } from "../local";
+
 
 const Navbar = () => {
+  const toast = useToast();
+  const { userData } = useSelector((store) => store.auth);
+  const [Data, SetData] = useState({});
+  const navigateTo = useNavigate();
+  const GoTo = (path) => {
+    navigateTo(path);
+  };
+
+
+  const admin = () => {
+    toast({
+      title: "Welcome Admin.",
+      description: `please provide your Credential Here 
+
+        Admin Username And password  ---------------------------------------------------------------
+        username : admin@admin.com  password :123456.`,
+      status: "success",
+      duration: 6000,
+       
+      isClosable: true,
+    });
+    GoTo("/login");
+  };
+
+  useEffect(() => {
+    console.log("userdata", userData);
+    SetData(userData);
+  }, [userData]);
+  const user=GetItem("Login");
+  console.log(user)
+
+
+  const dispatch = useDispatch();
   const { getDisclosureProps, getButtonProps } = useDisclosure();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,6 +96,7 @@ const Navbar = () => {
       zIndex="99"
       padding="20px"
       maxW="100%"
+      width="100%"
       display="flex"
       justifyContent="space-evenly"
       color="black"
@@ -105,18 +151,13 @@ const Navbar = () => {
       <Box
         maxW="70%"
         marginLeft="0px"
-        padding="2px"
+        padding="1px"
       >
         <InputGroup
           // display={{ base: "1", md: "inline-flex" }}
           maxW={"600px"}
           justifyItems={"center"}
-          width={{
-            xl: "600px",
-            lg: "400px",
-            md: "300px",
-            base: "null",
-          }}
+          display={["none", "none", "flex", "flex", "flex"]}
         >
           <InputLeftElement children={<SearchIcon />} />
           <Input
@@ -135,6 +176,15 @@ const Navbar = () => {
             _hover={{ color: "black", bg: "red.500", border: "2px solid red" }}>Search</Button>
 
         </InputGroup>
+      </Box>
+
+      <Box
+        maxW="70%"
+        marginLeft="0px"
+        padding="1px"
+        
+      >
+     
       </Box>
     </Container>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import { Box,Image, IconButton, useBreakpointValue } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 // And react-slick as our Carousel Lib
@@ -13,12 +13,18 @@ const settings = {
     infinite: true,
     autoplay: true,
     speed: 500,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
 };
 
-export default function Carousel() {
+// const cards = [
+//     'https://img4.nbstatic.in/tr:w-2800/63c90b038db992000bee9614.jpg',
+//     'https://img4.nbstatic.in/tr:w-2800/63b3af1e22b317000c1336a8.jpg',
+// ];
+
+
+export default function Bigcarousel({cards}) {
     // As we have used custom buttons, we need a reference variable to
     // change the state
     const [slider, setSlider] = React.useState(null);
@@ -29,15 +35,15 @@ export default function Carousel() {
     const side = useBreakpointValue({ base: '30%', md: '10px' });
 
     // These are the images used in the slide
-    const cards = [
-        'https://img4.nbstatic.in/tr:w-2800/63c90b038db992000bee9614.jpg',
-        'https://img4.nbstatic.in/tr:w-2800/63b3af1e22b317000c1336a8.jpg',
-    ];
+    // const cards = [
+    //     'https://img4.nbstatic.in/tr:w-2800/63c90b038db992000bee9614.jpg',
+    //     'https://img4.nbstatic.in/tr:w-2800/63b3af1e22b317000c1336a8.jpg',
+    // ];
 
     return (
         <Box
             position={'relative'}
-            height={'300px'}
+            height={'200px'}
             width={'full'}
             overflow={'hidden'}>
             {/* CSS files for react-slick */}
@@ -55,7 +61,7 @@ export default function Carousel() {
             {/* Left Icon */}
             <IconButton
                 aria-label="left-arrow"
-                colorScheme="messenger"
+                colorScheme="grey"
                 borderRadius="full"
                 position="absolute"
                 left={side}
@@ -68,7 +74,7 @@ export default function Carousel() {
             {/* Right Icon */}
             <IconButton
                 aria-label="right-arrow"
-                colorScheme="messenger"
+                colorScheme="grey"
                 borderRadius="full"
                 position="absolute"
                 right={side}
@@ -81,14 +87,12 @@ export default function Carousel() {
             {/* Slider */}
             <Slider {...settings} ref={(slider) => setSlider(slider)}>
                 {cards.map((url, index) => (
-                    <Box
+                    <Image
                         key={index}
-                        height={'300px'}
+                        height="200px"
                         position="relative"
-                        backgroundPosition="center"
-                        backgroundRepeat="no-repeat"
                         backgroundSize="cover"
-                        backgroundImage={`url(${url})`}
+                        src={url}
                     />
                 ))}
             </Slider>
