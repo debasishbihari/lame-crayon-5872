@@ -157,7 +157,7 @@ const Home = () => {
 
 
        {/* imageSlider */}
-      <Container maxW="70%" marginTop="50px" maxH="300px" >
+      <Container maxW="90%" marginTop="50px" maxH="400px" >
           <ImageSlider data={newdata}/>
       </Container>
 
@@ -167,7 +167,7 @@ const Home = () => {
 
       {/* Buffet heading */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Everything Buffet</Text>
       </Container>
 
@@ -186,12 +186,12 @@ const Home = () => {
 
       {/* New On NearBuy */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">New On NearBuy</Text>
       </Container>
 
 
-      <Container maxW="70%" margin="auto" marginTop="20px" >
+      <Container maxW="90%" margin="auto" marginTop="20px" >
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {newdata?.filter((el) => el.name== "Swiggy Money").map((el)=>
           <Card key={el.id}
@@ -215,11 +215,11 @@ const Home = () => {
 
       {/*Quick Bites*/}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Quick Bites</Text>
       </Container>
 
-      <Container maxW="70%" marginTop="10px" maxH="200px" >
+      <Container maxW="90%" marginTop="10px" maxH="200px" >
           <ImageSlider data={newdata?.filter((el)=>el.typeFilter==="Restaurant Deals")}/>
       </Container>
 
@@ -229,16 +229,16 @@ const Home = () => {
 
       {/* next on your mind heading */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Next Thing On Your Mind</Text>
       </Container>
 
-      <Container maxW="70%"  margin="auto" marginTop="10px" >
+      <Container maxW="90%"  margin="auto" marginTop="10px" >
       <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={5}>
           {images.map((img, index) =>
           <Card key={index}
           _hover={{boxShadow:'5px 5px 20px grey'}}>
-               <Image  src={img} maxW="200px" maxH={"250px"} borderRadius="20px" />
+               <Image  src={img} maxW="250px" maxH={"300px"} borderRadius="20px" />
           </Card>
            )}
         </SimpleGrid>
@@ -250,11 +250,11 @@ const Home = () => {
 
       {/* Salon heading */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Popular Salon Services</Text>
       </Container>
    
-      <Container maxW="70%" margin="auto" marginTop="10px" >
+      <Container maxW="90%" margin="auto" marginTop="10px" >
         <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
           {newdata?.filter((el) => el.typeFilter== "Salon Deals").map((el)=>
           <Card key={el.id}
@@ -274,11 +274,11 @@ const Home = () => {
 
         {/* Relaxing heading */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="50px">
+      <Container maxW="90%" margin={"auto"} marginTop="50px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Relaxing Massages</Text>
       </Container>
    
-      <Container maxW="70%" margin="auto" marginTop="10px" >
+      <Container maxW="90%" margin="auto" marginTop="10px" >
         <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={5}>
           {newdata?.filter((el) => el.typeFilter== "Health").map((el)=>
           <Card key={el.id}
@@ -300,16 +300,16 @@ const Home = () => {
 
       {/* next on your mind heading */}
 
-      <Container maxW="70%" margin={"auto"} marginTop="20px">
+      <Container maxW="90%" margin={"auto"} marginTop="20px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Promo Codes For More Savings</Text>
       </Container>
 
-      <Container maxW="70%"  margin="auto" marginTop="10px" >
+      <Container maxW="90%"  margin="auto" marginTop="10px" >
       <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {promo.map((img, index) =>
           <Card key={index}
           >
-               <Image  src={img} maxW="300px"  maxH={"150px"} borderRadius="20px" />
+               <Image  src={img} maxW="350px"  maxH={"200px"} borderRadius="20px" />
                <Divider/>
                <Text fontSize={"12px"} textAlign="left" margin={"5px"}>Valid till 2feb 2023</Text>
           </Card>

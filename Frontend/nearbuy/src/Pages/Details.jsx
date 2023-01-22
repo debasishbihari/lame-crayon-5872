@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
 import style from "../Pages/Details.module.css";
@@ -25,6 +25,11 @@ const Details = () => {
   let id = Number(params.id);
   const toast = useToast()
 
+const navigate = useNavigate();
+
+
+  let Name=JSON.parse(localStorage.getItem("userName"));
+
   const getProduct = async (id) => {
     try {
         setLoading(true)
@@ -40,26 +45,39 @@ const Details = () => {
     }
 }
 
+
 const handleCart=(product)=>{
-   dispatch(addToCart(product));
-   if(cartVal.isAdded){
+  if(Name){
+    dispatch(addToCart(product));
+    if(cartVal.isAdded){
+     toast({
+       title: 'Cart Success.',
+       description: "Items Added to cart.",
+       status: 'success',
+       duration: 2000,
+       isClosable: true,
+     })
+    }
+    else if(cartVal.isError){
+     toast({
+       title: 'Cart Error.',
+       description: "Item already exists in the cart.",
+       status: 'error',
+       duration: 2000,
+       isClosable: true,
+     })
+    }
+  }else{
     toast({
-      title: 'Cart Success.',
-      description: "Items Added to cart.",
-      status: 'success',
-      duration: 2000,
-      isClosable: true,
-    })
-   }
-   else if(cartVal.isError){
-    toast({
-      title: 'Cart Error.',
-      description: "Item already exists in the cart.",
+      title: 'User Not Logged In',
+      description: "Please SignIn First to Proceed",
       status: 'error',
       duration: 2000,
       isClosable: true,
     })
-   }
+  navigate("/login")
+  }
+   
 }
 
 useEffect(() => {
@@ -119,7 +137,8 @@ if (loading) {
              <p style={{"color":"gray"}}>+2 more Deals</p>
              <div style={{"color":"gray","fontSize":"17px","padding":"10px","marginTop":"7px"}}><span> Starts From : </span> <span style={{"fontWeight":"bold","color":"black"}}>₹{product.price}</span></div>
           </div>
-          <button className={style.viewBtn} onClick={()=>handleCart(product)}>ADD&nbsp;<BiCart/></button>
+          
+          <button   className={style.viewBtn} onClick={()=>handleCart(product)}>ADD&nbsp;<BiCart/></button>
   </div>:<div className={style.imageCont}>
                 <img src={product.img} alt="img" onClick={()=>setImage(product.img)}/>
                 {

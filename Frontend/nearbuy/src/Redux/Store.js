@@ -25,10 +25,9 @@ import { productReducer } from "./Products/Products.Reducer";
 const root_reducer = combineReducers({
   productsManager:productReducer,
 
-  cartsManager:CartReducer
+  cartsManager:CartReducer,
 
 
-  auth: authReducer,
   cartsManager:CartReducer
 
 });

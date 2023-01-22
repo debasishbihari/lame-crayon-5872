@@ -20,7 +20,7 @@ import PrivateRoute from "./PrivateRoute"
 
 function Router() {
   return (
-    < div>
+    < div style={{marginTop:"100px"}}>
       <Routes  >
         <Route path="/" element={<Home/>} />
         <Route path="/signup" element={<SignUp/>} />
