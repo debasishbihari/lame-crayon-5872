@@ -127,8 +127,8 @@ export default function Navbar() {
           
 
         <Box
-        maxW="80%"
-        marginLeft="100px"
+        maxW="70%"
+        marginLeft="70px"
         padding="15px"
       >
         <InputGroup
