@@ -34,11 +34,6 @@ export default function Bigcarousel({cards}) {
     const top = useBreakpointValue({ base: '90%', md: '50%' });
     const side = useBreakpointValue({ base: '30%', md: '10px' });
 
-    // These are the images used in the slide
-    // const cards = [
-    //     'https://img4.nbstatic.in/tr:w-2800/63c90b038db992000bee9614.jpg',
-    //     'https://img4.nbstatic.in/tr:w-2800/63b3af1e22b317000c1336a8.jpg',
-    // ];
 
     return (
         <Box
