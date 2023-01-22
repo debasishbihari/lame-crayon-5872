@@ -1,6 +1,6 @@
 import { Container } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
-import { Card, CardBody, Stack, Heading, Image } from '@chakra-ui/react'
+import { Card, CardBody, Stack, Heading, Image,Divider, Button } from '@chakra-ui/react'
 import Bigcarousel from '../components/Carousel'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -31,7 +31,6 @@ const Home = () => {
 
   }, [])
 
-  console.log("a", newdata)
 
 
 
@@ -39,7 +38,7 @@ const Home = () => {
 
   const handleDeals = (e) => {
     let val = e.target.innerText;
-    if (val === "Restaurant Deals" || val === "Buffet Deals") {
+    if (val === "Restaurant Deals" || val === "Buffet Deals" || val==="View All Offers") {
       localStorage.setItem("typeFilter", "Restaurant Deals");
       localStorage.setItem("actualType", val);
     }
@@ -55,6 +54,42 @@ const Home = () => {
     navigate("/products")
 
   }
+
+  const headerImages=[{
+    id:"1",
+    url:"https://img4.nbstatic.in/tr:w-/60af2a061e2731000ba1096a.png",
+    text:"Restaurant Deals"
+  },
+  {
+    id:"2",
+    url:"https://img4.nbstatic.in/tr:w-/639acd9b8db992000bac8a46.png",
+    text:"Buffe Deals"
+  },
+  {
+    id:"3",
+    url:"https://img4.nbstatic.in/tr:w-/60ac96c840e9df000b6cbf94.png",
+    text:"Salon Deals"
+  },
+  {
+    id:"4",
+    url:"https://img4.nbstatic.in/tr:w-/60ac96e240e9df000b6cbf95.png",
+    text:"Spa Deals"
+  },
+  {
+    id:"5",
+    url:"https://img4.nbstatic.in/tr:w-/6201ec623b031b000b53e5b6.png",
+    text:"Activities Deals"
+  },
+  {
+    id:"6",
+    url:"https://img4.nbstatic.in/tr:w-/62d67522edffcc000b060b5c.png",
+    text:"Gift Cards"
+  },
+  {
+    id:"7",
+    url:"https://img4.nbstatic.in/tr:w-/62d6747fb3c621000b6fb633.png",
+    text:"Helath"
+  } ]
 
   const cards = [
     'https://img4.nbstatic.in/tr:w-2800/63c90b038db992000bee9614.jpg',
@@ -81,453 +116,34 @@ const Home = () => {
 
   return (
     <Container maxW="100%" marginTop="81px">
+
+      {/* Header */}
+
       <Container
-        maxW="full"
-        display="flex"
-
-        gap={"5px"}
         maxH="100px"
-        boxShadow="base"
-        >
-
+        maxWidth="100%"
+        margin="auto"
+        boxShadow="base">
         <Container
-          maxW="65%"
-          margin="auto"
-          display="flex"
-
-          gap="4px"
-          maxH="80px"
-        >
-
-          <Center py={3}>
-            <Box
-              maxW={'100%'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              justifyContent="center"
-              alignItems="center"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/60af2a061e2731000ba1096a.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Restaurant Deals
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'100%'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              pl="15px"
-              pr="15px"
-              justifyContent="center"
-              alignItems="center"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/639acd9b8db992000bac8a46.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Buffet Deals
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'fit-content'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              justifyContent="center"
-              alignItems="center"
-              pl="15px"
-              pr="15px"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/60ac96c840e9df000b6cbf94.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Salon Deals
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'fit-content'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              justifyContent="center"
-              alignItems="center"
-              pl="15px"
-              pr="25px"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/60ac96e240e9df000b6cbf95.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Spa Deals
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'fit-content'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              justifyContent="center"
-              alignItems="center"
-              pl="5px"
-              pr="5px"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/6201ec623b031b000b53e5b6.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Activities Deals
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'fit-content'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={1}
-              justifyContent="center"
-              alignItems="center"
-              pl="20px"
-              pr="20px"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/62d67522edffcc000b060b5c.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Gift Cards
-                </Heading>
-
-              </Stack>
-            </Box>
-          </Center>
-
-          <Center py={3}>
-            <Box
-              maxW={'fit-content'}
-              maxH="fit-content"
-              w={'full'}
-              bg="transparent"
-              p={2}
-              justifyContent="center"
-              alignItems="center"
-              pl="30px"
-              pr="30px"
-              _hover={{ boxShadow: '1px 1px 2px grey', bg: "rgb(208,208,208)" }}
-              overflow={'hidden'}
-              onClick={handleDeals}>
-              <Box
-                h={'50px'}
-                ml="30%"
-                pos={'relative'}>
-                <Image
-                  src={
-                    'https://img4.nbstatic.in/tr:w-/62d6747fb3c621000b6fb633.png'
-                  }
-                  layout={'fill'}
-                  maxH="70%"
-                />
-              </Box>
-              <Stack
-
-                mb="0px">
-
-                <Heading
-                  fontSize={'12px'}
-                  fontFamily={'body'}>
-                  Gift Cards
-                </Heading>
-
-              </Stack>
-
-          <Card maxW="35%"
-            justifyContent="center"
-            bg="transparent"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/60af2a061e2731000ba1096a.png'
-                alt='hgg'
-                borderRadius='md'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Restaurant Deals</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="35%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/639acd9b8db992000bac8a46.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Buffet Deals</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="35%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/60ac96c840e9df000b6cbf94.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Salon Deals</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="35%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/60ac96e240e9df000b6cbf95.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Spa Deals</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="35%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/6201ec623b031b000b53e5b6.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Activity Deals</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="12%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/62d67522edffcc000b060b5c.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Gift Cards</Heading>
-
-              </Stack>
-            </CardBody>
-          </Card>
-
-          <Card maxW="12%"
-            justifyContent="center"
-            _hover={{ color: "red", transform: "scale(1.06)", overflow: "hidden" }} onClick={handleDeals}>
-            <CardBody
-              justifyContent="center">
-              <Image
-                src='https://img4.nbstatic.in/tr:w-/62d6747fb3c621000b6fb633.png'
-                alt='hgg'
-                borderRadius='lg'
-                ml="15px"
-                mt="20px"
-                maxW="35%"
-                maxH="35%"
-              />
-              <Stack mt='3' spacing='2'>
-                <Heading size='md'>Health</Heading>
-
-
-              </Stack>
-            </CardBody>
-          </Card>
-            </Box>
-          </Center>
+            maxH="100px"
+            maxWidth="70%"
+            margin="auto">
+          <SimpleGrid columns={[5,,6,7,8,9]} spacing={1}>
+            {headerImages.map((el) =>
+            <Card key={el.id}
+               textAlign="center"
+               padding={3}
+               boxShadow="none"
+               borderRadius="none"
+               onClick={handleDeals}
+              _hover={{bg:"#DCDCDC"}}>
+                <Image  src={el.url} maxW="30px" maxH={"40px"} m="auto" />
+                <Text mt={1} fontSize="10px">{el.text}</Text>
+            </Card>)}
+          </SimpleGrid>
         </Container>
-
-     </Container>
+      </Container>
+      
 
 
       <Container maxW="100%" marginTop="20px" maxH="200px" >
@@ -660,13 +276,25 @@ const Home = () => {
           <Card key={index}
           >
                <Image  src={img} maxW="300px"  maxH={"150px"} borderRadius="20px" />
-               <Text fontSize={"10px"} textAlign="left" margin={"5px"}>Valid till 2feb 2023</Text>
+               <Divider/>
+               <Text fontSize={"12px"} textAlign="left" margin={"5px"}>Valid till 2feb 2023</Text>
           </Card>
            )}
         </SimpleGrid>
       </Container>
 
-    
+    <Button fontSize="13px"
+    mt="80px"
+    mb="50px"
+    p="10px 26px"
+    bg="#c6d4d9"
+    color="#666"
+    display="inline-block"
+    cursor="pointer"
+    fontFamily="Open Sans"
+    borderRadius="50px"
+    onClick={handleDeals}
+    >View All Offers</Button>
 
     </Container>  
   )
