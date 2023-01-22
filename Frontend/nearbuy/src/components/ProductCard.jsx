@@ -1,9 +1,18 @@
 import { Heading } from '@chakra-ui/react';
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styles from "../Pages/Products.module.css";
 const ProductCard = ({product}) => {
+
+  const navigate=useNavigate();
+
+const handleCard=(product)=>{
+     localStorage.setItem("dealName",product.name);
+     navigate(`/products/${product.id}`);
+}
+
   return (
-    <div className={styles.product}>
+    <div className={styles.product} onClick={()=>handleCard(product)}>
         <img src={product.img} alt={product.name}/>
         <div className={styles.prodIn}>
         <p style={{"fontSize":"large","fontWeight":"500","margin":"3px 0px"}}>{product.name}</p>

@@ -1,4 +1,4 @@
-import { Container, FormControl, Heading, Select } from '@chakra-ui/react';
+import { Button, Container, FormControl, Heading, Select } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
@@ -13,7 +13,7 @@ const Products = () => {
     const [order, setOrder] = useState("");
     const[type,setType]=useState("");
     const [sort,setSort]=useState(""); 
-
+    const[all,setAll]=useState(false);
     const handlePrice=(e)=>{
         setSort("price");
         setOrder(e.target.value);
@@ -28,13 +28,34 @@ const Products = () => {
        setType(e.target.value);
     }
 
+    const handleAll=()=>{
+        
+        setAll(true) ;
+    }
+
     let typeFilter=localStorage.getItem("typeFilter") || "";
      
 
-    const getUrl=(order,typeFilter,type,sort)=>{
+    const getUrl=(order,typeFilter,type,sort,all)=>{
         let baseUrl=`https://nearbuy-mock-server.onrender.com/products?typeFilter=${typeFilter}`;
+
+         if(all && sort && order && type){
+            baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&_order=${order}&type=${type}` ;
+        }
+
+        else if(all && sort && order ){
+            baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&_order=${order}` ;
+        }
+
+        else if(all && sort  && type){
+            baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&type=${type}` ;
+        }
+
+        else if(all &&  order && type){
+            baseUrl=`https://nearbuy-mock-server.onrender.com/products?_order=${order}&type=${type}` ;
+        }
        
-        if(sort && order && type){
+       else if(sort && order && type){
             baseUrl=`${baseUrl}&_sort=${sort}&_order=${order}&type=${type}` ;
         }
 
@@ -56,7 +77,10 @@ const Products = () => {
         else if(type){
             baseUrl=`${baseUrl}&type=${type}`
         }
-    
+        else if(all){
+            baseUrl="https://nearbuy-mock-server.onrender.com/products" ;
+            
+        }
 
         return baseUrl;
     }
@@ -68,9 +92,9 @@ const Products = () => {
     console.log(data);
 
     useEffect(()=>{
-        let url=getUrl(order,typeFilter,type,sort);
+        let url=getUrl(order,typeFilter,type,sort,all);
         dispatch(getProducts(url));
-    },[dispatch,order,typeFilter,type,sort]);
+    },[dispatch,order,typeFilter,type,sort,all]);
 
     if(data.loading){
       return <Skeleton/>
@@ -90,7 +114,7 @@ const Products = () => {
 
         <div className={styles.leftCont}>
         <FormControl>
-                            <Select variant='filled' onChange={handlePrice} placeholder="Sort by price" fontSize={20} borderColor='gray.400' >
+                            <Select variant='filled' onChange={handlePrice} placeholder="Sort by price" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
                                 
                                 <option value="asc">Price (Low to High) </option>
                                 
@@ -99,7 +123,7 @@ const Products = () => {
                             </Select>
                         </FormControl>
                         <FormControl>
-                            <Select variant='filled' onChange={handleBought} placeholder="Sort by bought No" fontSize={20} borderColor='gray.400' >
+                            <Select variant='filled' onChange={handleBought} placeholder="Sort by bought No" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
                                 
                                 <option value="asc">0 - 999</option>
                                 
@@ -108,7 +132,7 @@ const Products = () => {
                             </Select>
                         </FormControl>
                         <FormControl>
-                        <Select variant='filled' onChange={handleType} placeholder="Choose Category" fontSize={20} borderColor='gray.400' >
+                        <Select variant='filled' onChange={handleType} placeholder="Choose Category" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
                                 <option value='VIEW'>VIEW</option>
                                 <option value='DEALS'>DEALS</option>
                                 <option value='GIFT CARDS'>GIFT CARDS</option>
@@ -125,6 +149,16 @@ const Products = () => {
         </div>
            
        </div>
+       <br />
+       <br />
+       <div>
+       {
+        !all?<Button  colorScheme='blue' variant='outline' px={"10"} py={"5"} borderRadius="20" onClick={handleAll} >
+        VIEW ALL 
+              </Button>:null
+       }
+       </div>
+
 
     </div>
   )

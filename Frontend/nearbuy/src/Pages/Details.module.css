@@ -1,0 +1,109 @@
+.DetailCont{
+    margin-top: 80px ;
+    width: 100%;
+    height: auto;
+   
+    margin-bottom: 30px;
+}
+
+.heading{
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.topCont{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 25px auto 40px auto;
+    width: 85%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    text-align: left;
+}
+
+.topCont img{
+    width: 45%;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.images{
+    display: flex;
+}
+
+.buttomCont{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 25px auto 40px auto;
+    width: 85%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.btns button{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 0px 0px;
+    padding: 20px;
+    font-size: larger;
+    text-align: left;
+    margin-right: 4px;
+}
+
+.detailBox{
+    width: 70%;
+    border: 1px solid #2EEEF7;
+    height: auto;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, #ffffff, #f4f9ff, #def7ff, #c0f6ff, #a5f5f9);
+    padding: 0px 30px 0px 20px;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.type{
+    display: inline-block;
+    border: 1px solid #2EEEF7;
+    padding: 3px 7px;
+    color: #2EEEF7;
+    border-radius: 3px;
+    margin:10px 0px;
+}
+
+.viewBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2EEEF7;
+    padding: 8px 40px;
+    font-size: large;
+    color: white;
+    background-color: rgb(35, 206, 241);
+    border-radius: 3px;
+}
+.viewBtn:hover{
+    background-color: #89e8f9;
+    color: #37aef8;
+}
+
+.imageCont{
+    width: 80%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(auto,1fr);
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.imageCont img{
+    width: 90%;
+    border-radius: 5px ;
+}

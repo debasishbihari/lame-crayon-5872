@@ -1,40 +1,117 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { clearCart, getCart } from "../Redux/Cart/Cart.action";
+import { useSelector } from "react-redux";
+import { Flex, useToast } from "@chakra-ui/react";
 
 const Checkout = () => {
+  const dispatch = useDispatch()
+  const toast=useToast();
+  const cart = useSelector((store)=> store.cartsManager)
+
+  const deleteAllCart = ()=>{
+    dispatch(clearCart())
+    if(cart.cart.length==0){
+      // alert("You dont have any item in your cart")
+      toast({
+        position:"top",
+        title: 'Cart is empty.',
+        description: "You dont have any item in your cart.",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }else{
+      // alert("Congratulations.. your order has been placed")
+      toast({
+        position:"top",
+        title: 'Success.',
+        description: "Congratulations.. your order has been placed.",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+    
+  }
+
+  console.log(cart)
+   useEffect(()=>{
+    dispatch(getCart())
+   },[])
+
+  const initialValue = 0;
+  const totalPrice = cart.cart.reduce(
+  (accumulator, currentValue) => accumulator + currentValue.price, initialValue
+);
+
+console.log(initialValue, totalPrice)
+
+   if(cart.isLoading){
+    <h1>...Loading</h1>
+   }
   return (
     <>
-      <div className="main">
-        <div className="left-box">
-          <div
-            style={{
-              width: "85%",
-              border: "2px solid whitesmoke",
-              height: "200px",
-              marginTop: "20px",
-              marginLeft: "20px",
-              backgroundColor: "white"
-            }}
-          >
-            <h2 style={{ marginLeft:"12%" }}>Order summary</h2>
+      <div style={{
+        display: "flex",
+        marginTop:"80px",
+        // border:"2px solid blue",
+        backgroundColor: "rgb(215, 225, 233)"}}>
+        <div style={{width:"600px",height:"auto",marginTop:"50px",marginLeft: "20px",marginBottom:"30px"}}>
+            <div ><h2 style={{ marginLeft:"1%",fontSize:"25px" }}>Order summary</h2>
+          {cart.cart.map((el)=>(               
+               <div key={el.id} style={{
+                width: "85%",
+                // border: "2px solid red",
+                height: "150px",
+                marginLeft: "20px",
+                backgroundColor: "white"
+
+            }}>
             <hr />
+        
+            <div style={{display:"flex", marginTop:"20px", justifyContent:"space-between", alignItems:"center"}}>
+              <div>
+                <img style={{width:"200px"}} src={el.img} alt="img" />
+              </div>
+                <div>
+                  <h2 style={{fontSize:"19px"}}>{el.name}</h2>
+                  <p style={{fontSize:"15px",marginTop:"10px"}}>{el.address}</p>
+                  <h2 style={{fontSize:"15px",marginTop:"10px"}}>Price: ₹{el.price}</h2>
+                </div>
+              <hr />
+            </div>
+        </div>       
+   
+          
+            ))
+          }
           </div>
           <div
             style={{
               width: "85%",
               border: "1px solid whitesmoke",
               height: "200px",
-              marginTop: "60px",
+              marginTop: "40px",
               marginLeft: "20px",
-              backgroundColor: "white"
+              backgroundColor: "white",
+              display:"flex",
+              justifyContent:"space-around",
+              flexDirection:"column"
             }}
           >
-            <p>Subtotal (qty. 1)</p>
-            <hr />
-            <p>Convenience Fees</p>
+            <div style={{display:"flex", "justifyContent":"space-around"}}>
+              <p style={{fontWeight:"700", fontSize:"18px"}}>Subtotal: (Qty.) {cart.cart.length}</p> 
+              <h2 style={{marginLeft:"150px", fontSize:"18px",fontWeight:"700"}}>₹ {totalPrice}</h2> 
+            </div>             
+            <div style={{border:"1px solid black"}}></div>
+            <div>
+              <h2 style={{ fontSize:"20px",fontWeight:"700"}}>Total Price: ₹ {totalPrice}</h2>
+            </div>
           </div>
         </div>
         
-        <div style={{ width: "60%", marginTop: "150px"}}>
+        <div style={{ width: "60%", marginTop: "70px"}}>
         <h2 style={{marginLeft:"-680px", fontSize:"18px", marginBottom:"20px"}}>Payment Details</h2>
           <div
             style={{
@@ -103,10 +180,8 @@ const Checkout = () => {
                 />
               </button>
               <br />
-              <button
-                onClick={() =>
-                  alert("Congratulation.. Your order has been placed")
-                }
+              <button 
+                onClick={deleteAllCart}
                 style={{
                   height: "30px",
                   marginTop: "20px",
