@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Container,
   Box,
@@ -17,7 +17,16 @@ import {
   Spacer,
   Button,
   Divider,
+  useToast
 } from "@chakra-ui/react";
+import {
+  FaUserCircle,
+  FaUser,
+  FaUserPlus,
+  FaRegUser,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 import { BiCart } from 'react-icons/bi';
 import { Link } from "react-router-dom";
@@ -25,11 +34,47 @@ import { Link } from "react-router-dom";
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.jpeg";
 import { transform } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { GetItem, setItem } from "../local";
+
 import { useNavigate } from "react-router-dom";
 import Cart from "../Pages/Cart";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const toast = useToast();
+  const { userData } = useSelector((store) => store.auth);
+  const [Data, SetData] = useState({});
+  const navigateTo = useNavigate();
+  const GoTo = (path) => {
+    navigateTo(path);
+  };
+
+
+  const admin = () => {
+    toast({
+      title: "Welcome Admin.",
+      description: `please provide your Credential Here 
+
+        Admin Username And password  ---------------------------------------------------------------
+        username : admin@admin.com  password :123456.`,
+      status: "success",
+      duration: 6000,
+       
+      isClosable: true,
+    });
+    GoTo("/login");
+  };
+
+  useEffect(() => {
+    console.log("userdata", userData);
+    SetData(userData);
+  }, [userData]);
+  const user=GetItem("Login");
+  console.log(user)
+
+
+  const dispatch = useDispatch();
   const { getDisclosureProps, getButtonProps } = useDisclosure();
 
   const cart = useSelector((store)=> store.cartsManager.cart)
@@ -64,6 +109,7 @@ const Navbar = () => {
       zIndex="99"
       padding="20px"
       maxW="100%"
+      width="100%"
       display="flex"
       justifyContent="space-evenly"
       color="black"
@@ -121,18 +167,13 @@ const Navbar = () => {
       <Box
         maxW="70%"
         marginLeft="0px"
-        padding="2px"
+        padding="1px"
       >
         <InputGroup
           // display={{ base: "1", md: "inline-flex" }}
           maxW={"600px"}
           justifyItems={"center"}
-          width={{
-            xl: "600px",
-            lg: "400px",
-            md: "300px",
-            base: "null",
-          }}
+          display={["none", "none", "flex", "flex", "flex"]}
         >
           <InputLeftElement children={<SearchIcon />} />
           <Input
@@ -153,12 +194,22 @@ const Navbar = () => {
         </InputGroup>
           
       </Box>
+
+      <Box
+        maxW="70%"
+        marginLeft="0px"
+        padding="1px"
+        
+      >
+     
+      </Box>
           <div>
             <Link to="/cart">
               <span style={{fontSize:"18px",color:"red", fontWeight:"600" }}>{cart.length}</span>             
               <h2 style={{fontSize:"40px",marginTop:"-17px", color:"green"}}><BiCart /></h2>
             </Link>
           </div>
+
     </Container>
   );
 };

@@ -1,75 +1,54 @@
+
 import {
-    Box,
-    Center,
-    useColorModeValue,
-    Heading,
-    Text,
-    Stack,
-    Image,
-  } from '@chakra-ui/react';
-  
-  
-  
-  export default function ProductSimple() {
-    return (
-      <Center py={12}>
+  Box,
+  Center,
+  Heading,
+  Text,
+  Stack,
+  Image,
+  Avatar,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
+export default function ProductSimple() {
+  return (
+    <Center py={3}>
+      <Box
+        maxW={'fit-content'}
+        maxH="fit-content"
+        w={'full'}
+        bg="transparent"
+        rounded={'md'}
+        p={2}
+        justifyContent="center"
+        alignItems="center"
+        border="1px solid red"
+        overflow={'hidden'}>
         <Box
-          role={'group'}
-          p={6}
-          maxW={'330px'}
-          w={'full'}
-          bg={useColorModeValue('white', 'gray.800')}
-          boxShadow={'2xl'}
-          rounded={'lg'}
-          pos={'relative'}
-          zIndex={1}>
-          <Box
-            rounded={'lg'}
-            mt={-12}
-            pos={'relative'}
-            height={'230px'}
-            _after={{
-              transition: 'all .3s ease',
-              content: '""',
-              w: 'full',
-              h: 'full',
-              pos: 'absolute',
-              top: 5,
-              left: 0,
-              backgroundImage: `url(${IMAGE})`,
-              filter: 'blur(15px)',
-              zIndex: -1,
-            }}
-            _groupHover={{
-              _after: {
-                filter: 'blur(20px)',
-              },
-            }}>
-            <Image
-              rounded={'lg'}
-              height={230}
-              width={282}
-              objectFit={'cover'}
-              src={IMAGE}
-            />
-          </Box>
-          <Stack pt={10} align={'center'}>
-            <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-              Brand
-            </Text>
-            <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-              Nice Chair, pink
-            </Heading>
-            <Stack direction={'row'} align={'center'}>
-              <Text fontWeight={800} fontSize={'xl'}>
-                $57
-              </Text>
-              <Text textDecoration={'line-through'} color={'gray.600'}>
-                $199
-              </Text>
-            </Stack>
-          </Stack>
+          h={'50px'}
+          mb={5}
+          ml="22%"
+          pos={'relative'}>
+          <Image
+            src={
+              'https://img4.nbstatic.in/tr:w-/62d6747fb3c621000b6fb633.png'
+            }
+            layout={'fill'}
+            maxH="100%"
+          />
         </Box>
-      </Center>
-    );
-  }
+        <Stack
+        border="1px solid green"
+        mb="0px">
+          
+          <Heading
+            fontSize={'sm'}
+            fontFamily={'body'}>
+            Restaurant Deals
+          </Heading>
+          
+        </Stack>
+      </Box>
+    </Center>
+  );
+}
