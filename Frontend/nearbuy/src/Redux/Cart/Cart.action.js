@@ -36,5 +36,8 @@ export const removeCart =(id)=>async(dispatch)=>{
 
 
 export const clearCart = ()=>async(dispatch)=>{
+    let dummy= []
+    // let res= await axios.post("https://nearbuy-mock-server.onrender.com/carts", dummy)
+
     dispatch({type:CART_CLEAN, payload:[]})
 }

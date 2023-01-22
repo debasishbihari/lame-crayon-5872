@@ -14,12 +14,21 @@ import { productReducer } from "./Products/Products.Reducer";
 
 //     // cartManager: CartReducer
 
+
 //     cartsManager:CartReducer
+
+    
+
 
 // })
 
 const root_reducer = combineReducers({
   productsManager:productReducer,
+
+  cartsManager:CartReducer
+
+
+  auth: authReducer,
   cartsManager:CartReducer
 
 });
