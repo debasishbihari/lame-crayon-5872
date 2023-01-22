@@ -206,7 +206,6 @@ import {
   InputLeftElement,
   InputGroup,
   Input,
-  Link,
   Image,
   Popover,
   PopoverTrigger,
@@ -215,6 +214,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 import {
   HamburgerIcon,
@@ -260,14 +260,15 @@ export default function Navbar() {
       borderColor={useColorModeValue('gray.200', 'gray.900')}
 
     >
-      <Flex
+      <Box
         width={["90%"]}
         margin={"auto"}
-        // border="1px solid red"
+        display={"flex"}
+        
         
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'90px'}
+        minH={'100px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
         // borderBottom={1}
@@ -287,10 +288,18 @@ export default function Navbar() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
+
+
+
+
+        <Link to="/">
         <Flex style={{
           alignItems: "center"
+          
         }}
+        
          flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        
           <Image
             maxW={"200px"}
             src={logo}
@@ -303,7 +312,7 @@ export default function Navbar() {
           </Flex>
 
         </Flex>
-
+        </Link>
 
 
 
@@ -311,16 +320,16 @@ export default function Navbar() {
 
           
 
-            <Box
-        maxW="70%"
-        marginLeft="0px"
-        padding="1px"
+        <Box
+        maxW="80%"
+        marginLeft="100px"
+        padding="15px"
       >
         <InputGroup
           // display={{ base: "1", md: "inline-flex" }}
-          maxW={"800px"}
+          width={"700px"}
           justifyItems={"center"}
-          display={["none", "none", "flex", "flex", "flex"]}
+          display={["none", "none", "none", "flex", "flex"]}
         >
           <InputLeftElement children={<SearchIcon />} />
           <Input
@@ -345,32 +354,19 @@ export default function Navbar() {
 
 
 
-
-       
-
-
-
-
-
-
-
-
-
-
-
-        <Stack
+        <Box
           flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          marginLeft={"20px"}
-          direction={'row'}
-          border="1px solid red"
-          spacing={1}>
+          maxW="20%"
+          marginLeft="100px"
+          padding="15px"
+         >
           <NavLink style={{textDecoration:"none"}} to="/login">
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
+            mt={"7px"}
             fontWeight={600}
-            bg={'#f26226'}
+            bg={'blue.500'}
             color={"white"}
             _hover={{
               bg: 'pink.300',
@@ -381,18 +377,16 @@ export default function Navbar() {
           
           </Button>
           </NavLink>
-        </Stack>
+        </Box>
 
 
          {/* Cart Space */}
-         <Stack style={{
-          alignItems: "end"
-        }} 
-        flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-
-          
-          
-
+         <Box 
+          flex={{ base: 1, md: 0 }}
+          maxW="60%"
+          marginLeft="20px"
+          padding="12px"
+          >
           <div>
             <Link to="/cart">
               <span style={{fontSize:"18px",color:"red", fontWeight:"600" }}>{cart.length}</span>             
@@ -404,8 +398,8 @@ export default function Navbar() {
             {/* <DesktopNav /> */}
           </Flex>
 
-        </Stack>
-      </Flex>
+        </Box>
+      </Box>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
