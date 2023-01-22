@@ -3,6 +3,7 @@ import {
   Container,
   Box,
   Heading,
+  Link,
   Icon,
   Image,
   IconButton,
@@ -28,8 +29,6 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
-import { BiCart } from 'react-icons/bi';
-import { Link } from "react-router-dom";
 
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import logo from "../assets/logo.jpeg";
@@ -37,9 +36,6 @@ import { transform } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { GetItem, setItem } from "../local";
 
-import { useNavigate } from "react-router-dom";
-import Cart from "../Pages/Cart";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const toast = useToast();
@@ -77,8 +73,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { getDisclosureProps, getButtonProps } = useDisclosure();
 
-  const cart = useSelector((store)=> store.cartsManager.cart)
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const buttonProps = getButtonProps();
@@ -91,13 +85,6 @@ const Navbar = () => {
     "Statistics",
     "Contacts",
   ];
-
-  const navigate = useNavigate()
-
-  const GoToHome=()=>{
-    navigate("/")
-  }
-
   return (
 
     <Container
@@ -109,7 +96,6 @@ const Navbar = () => {
       zIndex="99"
       padding="20px"
       maxW="100%"
-      width="100%"
       display="flex"
       justifyContent="space-evenly"
       color="black"
@@ -149,17 +135,14 @@ const Navbar = () => {
           w={{ lg: "500px", md: "120px", sm: "120px" }}
           display={["none", "none", "flex", "flex", "flex"]}
         >
-          
-            <Image
-              alt={"Logo"}
-              onClick={GoToHome}
-              height="60px"
-              src={logo}
-              cursor="pointer"
-              w={"250px"}
+          <Image
+            alt={"Logo"}
+            onClick={() => GoTo("/")}
+            height="60px"
+            src={logo}
+            cursor="pointer"
+            w={"250px"}
           />
-         
-          
         </Box>
 
       </Box>
@@ -192,7 +175,6 @@ const Navbar = () => {
             _hover={{ color: "black", bg: "red.500", border: "2px solid red" }}>Search</Button>
 
         </InputGroup>
-          
       </Box>
 
       <Box
@@ -203,13 +185,6 @@ const Navbar = () => {
       >
      
       </Box>
-          <div>
-            <Link to="/cart">
-              <span style={{fontSize:"18px",color:"red", fontWeight:"600" }}>{cart.length}</span>             
-              <h2 style={{fontSize:"40px",marginTop:"-17px", color:"green"}}><BiCart /></h2>
-            </Link>
-          </div>
-
     </Container>
   );
 };

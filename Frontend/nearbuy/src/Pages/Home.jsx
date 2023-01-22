@@ -87,9 +87,7 @@ const Home = () => {
 
         gap={"5px"}
         maxH="100px"
-        boxShadow="base">
-
-        maxH="150px"
+        boxShadow="base"
         >
 
         <Container
@@ -372,11 +370,10 @@ const Home = () => {
                 <Heading
                   fontSize={'12px'}
                   fontFamily={'body'}>
-                  Health
+                  Gift Cards
                 </Heading>
 
-          gap="15px"
-          maxH="100px">
+              </Stack>
 
           <Card maxW="35%"
             justifyContent="center"
@@ -524,11 +521,13 @@ const Home = () => {
 
 
               </Stack>
+            </CardBody>
+          </Card>
             </Box>
           </Center>
         </Container>
 
-      </Container>
+     </Container>
 
 
       <Container maxW="100%" marginTop="20px" maxH="200px" >
@@ -649,9 +648,9 @@ const Home = () => {
 
 
 
-{/* next on your mind heading */}
+      {/* next on your mind heading */}
 
-<Container maxW="60%" margin={"auto"} marginTop="20px">
+      <Container maxW="60%" margin={"auto"} marginTop="20px">
         <Text fontWeight="900" textAlign="left" fontSize="2xl">Promo Codes For More Savings</Text>
       </Container>
 
@@ -669,8 +668,8 @@ const Home = () => {
 
     
 
-    </Container>
+    </Container>  
   )
 }
 
-export default Home
+export default Home;
