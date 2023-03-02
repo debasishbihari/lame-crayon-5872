@@ -153,7 +153,7 @@ const Products = () => {
        <br />
        <div>
        {
-        !all?<Button  colorScheme='blue' variant='outline' px={"10"} py={"5"} borderRadius="20" onClick={handleAll} >
+        !all?<Button  colorScheme='blue' variant='outline' px={"10"} py={"5"} borderRadius="20" onClick={handleAll} mb={"20px"}>
         VIEW ALL 
               </Button>:null
        }

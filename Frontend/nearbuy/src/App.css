@@ -3,3 +3,10 @@
   margin: 0px;
   padding: 0px;
 }
+
+
+@media only screen and (min-width:200px) and (max-width:950px){
+  .footer{
+   display: none;
+  }
+}

@@ -17,7 +17,6 @@
 
 .prodMain{
     width: 85%;
-    
     margin: 15px auto;
     height: auto;
     display: flex;
@@ -34,14 +33,15 @@
 
 
 .products{
-    width:75% ;
+    width:80% ;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(auto,1fr);
     gap: 15px;
-    padding: 3px;
+    padding: 10px;
 }
+
 
 .product{
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -49,9 +49,12 @@
    flex-direction: column;
    text-align: left;
    padding: 10px;
+   border-radius: 5px;
 }
 
-
+.product:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 .product>img{
     height: 40%;
 }
@@ -75,15 +78,6 @@
     background-color: rgba(67, 206, 216, 0.931);
     padding: 2px 3px;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -129,4 +123,49 @@
 .notFound > button:hover {
   background-color: #fc2779;
   color: azure;
+}
+
+
+@media only screen and (min-width:700px) and (max-width:1155px){
+    .products{
+        grid-template-columns: repeat(2,1fr);
+        
+    }
+    .leftCont{
+        display: flex;
+        width: 90%;
+        position: static;
+    }
+    .prodMain{
+        flex-direction: column;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .skeleton{
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+    }
+}
+
+
+@media only screen and (min-width:300px) and (max-width:699px){
+    .products{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .leftCont{
+        display: flex;
+        width: 100%;
+        position: static;
+    }
+    .prodMain{
+        flex-direction: column;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .skeleton{
+        grid-template-columns: repeat(1, 1fr);
+        width: 80%;
+    }
 }
