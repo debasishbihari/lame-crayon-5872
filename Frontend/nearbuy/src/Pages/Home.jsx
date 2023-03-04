@@ -36,6 +36,7 @@ const Home = () => {
 
   const handleDeals = (e) => {
     let val = e.target.innerText;
+    
     if (val === "Restaurant Deals" || val === "Buffet Deals" || val==="View All Offers") {
       localStorage.setItem("typeFilter", "Restaurant Deals");
       localStorage.setItem("actualType", val);
@@ -80,7 +81,7 @@ const Home = () => {
   {
     id:"5",
     url:"https://img4.nbstatic.in/tr:w-/6201ec623b031b000b53e5b6.png",
-    text:"Activities Deals"
+    text:"Activity Deals"
   },
   {
     id:"6",
@@ -90,7 +91,7 @@ const Home = () => {
   {
     id:"7",
     url:"https://img4.nbstatic.in/tr:w-/62d6747fb3c621000b6fb633.png",
-    text:"Helath"
+    text:"Health"
   } ]
 
   const cards = [

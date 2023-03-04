@@ -19,6 +19,8 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  useToast,
+  
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
@@ -30,23 +32,43 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { useNavigate, NavLink } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {useSelector} from "react-redux"
 import {BiCart} from "react-icons/bi"
 
 import logo from "../assets/logo.jpeg";
+import { queryContext } from '../context/QueryContextProvider';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const [data, setData] = useState({});
-
+  const toast=useToast();
+  const{query,setQuery}=useContext(queryContext);
   const navigate = useNavigate();
 
   let Name=JSON.parse(localStorage.getItem("userName"));
 
   const cart = useSelector((store)=> store.cartsManager.cart)
 
+  const handleChange=(e)=>{
+     setQuery(e.target.value);
+    
+  }
+  const handleSearch=()=>{
+    
+    if(query===""){
+      toast({
+        title: 'Invalid Input.',
+        description: "Please enter something in order to search",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    }
+  }
 
+  
 
   return (
     <Box
@@ -139,20 +161,26 @@ export default function Navbar() {
         >
           <InputLeftElement children={<SearchIcon />} />
           <Input
-            placeholder="Search Here"
-            onChange={() => abcd()}
+            placeholder="Search here "
+            onChange={()=>handleChange(event)}
             size="lg"
-            // value=""
+            value={query}
             //
 
             // borderRadius={50}
             bgColor="white"
           />
-          <Button
+          {
+            query?<Link to={"/products"}><Button
             bg="red.500"
             color={"white"}
             size="lg"
-            _hover={{ color: "black", bg: "red.500", border: "2px solid red" }}>Search</Button>
+            _hover={{ color: "black", bg: "red.500", border: "2px solid red" }} >Search</Button></Link>:<Button
+            bg="red.500"
+            color={"white"}
+            size="lg"
+            _hover={{ color: "black", bg: "red.500", border: "2px solid red" }} onClick={handleSearch}>Search</Button>
+          }
 
         </InputGroup>
       </Box>

@@ -1,5 +1,5 @@
 import { Button, Container, FormControl, Heading, Select } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import styles from "../Pages/Products.module.css";
@@ -7,6 +7,7 @@ import { getProducts } from '../Redux/Products/Products.action';
 import Skeleton from '../components/Skeleton';
 import ProductCard from '../components/ProductCard';
 import DataNotFound from '../components/DataNotFound';
+import { queryContext } from '../context/QueryContextProvider';
 
 let st=">";
 const Products = () => {
@@ -14,6 +15,8 @@ const Products = () => {
     const[type,setType]=useState("");
     const [sort,setSort]=useState(""); 
     const[all,setAll]=useState(false);
+    const{query,setQuery}=useContext(queryContext);
+    
     const handlePrice=(e)=>{
         setSort("price");
         setOrder(e.target.value);
@@ -29,31 +32,55 @@ const Products = () => {
     }
 
     const handleAll=()=>{
-        
+        setQuery("")
         setAll(true) ;
     }
 
     let typeFilter=localStorage.getItem("typeFilter") || "";
      
 
-    const getUrl=(order,typeFilter,type,sort,all)=>{
+    const getUrl=(order,typeFilter,type,sort,all,query)=>{
         let baseUrl=`https://nearbuy-mock-server.onrender.com/products?typeFilter=${typeFilter}`;
+
 
          if(all && sort && order && type){
             baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&_order=${order}&type=${type}` ;
         }
+        // else if(query && sort && order && type){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${q}&_sort=${sort}&_order=${order}&type=${type}`
+        // }
 
         else if(all && sort && order ){
             baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&_order=${order}` ;
         }
+        // else if(query && sort && order){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}_sort=${sort}&_order=${order}` ;
+        // }
 
         else if(all && sort  && type){
             baseUrl=`https://nearbuy-mock-server.onrender.com/products?_sort=${sort}&type=${type}` ;
         }
+        // else if(query && sort && type){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}_sort=${sort}&_type=${type}` ;
+        // }
 
         else if(all &&  order && type){
             baseUrl=`https://nearbuy-mock-server.onrender.com/products?_order=${order}&type=${type}` ;
         }
+        // else if(query && order && type){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}_order=${order}&_type=${type}` ;
+        // }
+        // else if(query && order){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}_order=${order}` ;
+        // }
+        // else if(query && sort){
+        //     baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}_sort=${sort}` ;
+        // }
+        // else if(query && type){
+           
+        //   baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}&_type=${type}` ;
+          
+        // }
        
        else if(sort && order && type){
             baseUrl=`${baseUrl}&_sort=${sort}&_order=${order}&type=${type}` ;
@@ -62,6 +89,7 @@ const Products = () => {
         else if(sort && order){
             baseUrl=`${baseUrl}&_sort=${sort}&_order=${order}` ;
         }
+        
         else if(type && order){
             baseUrl=`${baseUrl}&type=${type}&_order=${order}` ;
         }
@@ -81,20 +109,30 @@ const Products = () => {
             baseUrl="https://nearbuy-mock-server.onrender.com/products" ;
             
         }
-
+        else if(query){
+            baseUrl=`https://nearbuy-mock-server.onrender.com/products?q=${query}`
+        }
+        
         return baseUrl;
     }
+   
 
 
     const dispatch = useDispatch();
     const data = useSelector((state) => state.productsManager);
 
-    console.log(data);
+   
 
     useEffect(()=>{
-        let url=getUrl(order,typeFilter,type,sort,all);
-        dispatch(getProducts(url));
-    },[dispatch,order,typeFilter,type,sort,all]);
+        let url=getUrl(order,typeFilter,type,sort,all,query);
+ 
+        const val = setTimeout(() => {
+            dispatch(getProducts(url));
+          }, 1200)
+      
+          return () => clearTimeout(val)
+
+    },[dispatch,order,typeFilter,type,sort,all,query]);
 
     if(data.loading){
       return <Skeleton/>
@@ -105,6 +143,8 @@ const Products = () => {
         return  <DataNotFound/>
        
     }
+
+    console.log(query);
    
   return (
     <div className={styles.productCont}>
@@ -112,34 +152,36 @@ const Products = () => {
 
        <div className={styles.prodMain}>
 
-        <div className={styles.leftCont}>
-        <FormControl>
-                            <Select variant='filled' onChange={handlePrice} placeholder="Sort by price" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
-                                
-                                <option value="asc">Price (Low to High) </option>
-                                
-                                <option value="desc">Price (High to Low) </option>
-
-                            </Select>
-                        </FormControl>
-                        <FormControl>
-                            <Select variant='filled' onChange={handleBought} placeholder="Sort by bought No" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
-                                
-                                <option value="asc">0 - 999</option>
-                                
-                                <option value="desc">999 - 0 </option>
-
-                            </Select>
-                        </FormControl>
-                        <FormControl>
-                        <Select variant='filled' onChange={handleType} placeholder="Choose Category" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
-                                <option value='VIEW'>VIEW</option>
-                                <option value='DEALS'>DEALS</option>
-                                <option value='GIFT CARDS'>GIFT CARDS</option>
-
-                            </Select>
-                        </FormControl>
-        </div>
+        {
+            !query?<div className={styles.leftCont}>
+            <FormControl>
+                                <Select variant='filled' onChange={handlePrice} placeholder="Sort by price" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
+                                    
+                                    <option value="asc">Price (Low to High) </option>
+                                    
+                                    <option value="desc">Price (High to Low) </option>
+    
+                                </Select>
+                            </FormControl>
+                            <FormControl>
+                                <Select variant='filled' onChange={handleBought} placeholder="Sort by bought No" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
+                                    
+                                    <option value="asc">0 - 999</option>
+                                    
+                                    <option value="desc">999 - 0 </option>
+    
+                                </Select>
+                            </FormControl>
+                            <FormControl>
+                            <Select variant='filled' onChange={handleType} placeholder="Choose Category" fontSize={20} borderColor='gray.400' style={{"fontSize":"17px"}}>
+                                    <option value='VIEW'>VIEW</option>
+                                    <option value='DEALS'>DEALS</option>
+                                    <option value='GIFT CARDS'>GIFT CARDS</option>
+    
+                                </Select>
+                            </FormControl>
+            </div>:null
+        }
         <div className={styles.products}>
             {
                 data.products?.map((product)=>{
@@ -153,7 +195,7 @@ const Products = () => {
        <br />
        <div>
        {
-        !all?<Button  colorScheme='blue' variant='outline' px={"10"} py={"5"} borderRadius="20" onClick={handleAll} mb={"20px"}>
+        !all ?<Button  colorScheme='blue' variant='outline' px={"10"} py={"5"} borderRadius="20" onClick={handleAll} mb={"20px"}>
         VIEW ALL 
               </Button>:null
        }
