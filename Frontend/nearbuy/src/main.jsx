@@ -9,11 +9,13 @@ import { store } from './Redux/Store';
 import { Provider } from 'react-redux';
 import AuthContextProvider from './context/AuthContext';
 import { QueryContextProvider } from './context/QueryContextProvider';
+import { OtpContextProvider } from './context/OtpContextProvider';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <QueryContextProvider>
+      <OtpContextProvider>
     <AuthContextProvider>
   <ChakraProvider >
   <BrowserRouter>
@@ -23,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </BrowserRouter>
   </ChakraProvider> 
   </AuthContextProvider>
+  </OtpContextProvider>
   </QueryContextProvider>
   </Provider>
 )
