@@ -1,15 +1,35 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import { clearCart, getCart } from "../Redux/Cart/Cart.action";
 import { useSelector } from "react-redux";
 import {  useToast } from "@chakra-ui/react";
 import Skeleton from "../components/Skeleton";
-
+import styles from "../Pages/Checkout.module.css";
+import WalletMethod from "../components/WalletMethod";
+import { otpContext } from "../context/OtpContextProvider";
+import OrderSuccess from "../components/OrderSuccess";
 const Checkout = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const{isOtpRight}=useContext(otpContext);
   const toast=useToast();
   const {cart, isLoading} = useSelector((store)=> store.cartsManager)
+  const paymentLogos=[
+    { id:1,
+      src:"https://1000logos.net/wp-content/uploads/2021/03/Paytm_Logo.png",
+      alt:"paytm"
+    },{id:2,
+      src:"https://static.vecteezy.com/system/resources/previews/009/911/500/original/google-pay-editorial-logo-digital-payment-app-free-vector.jpg",alt:"google-pay"
+    },
+    {
+      id:3,
+      src:"https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png",alt:"phonepe"
+    }
+  ]
+  const [selected,setSelected]=useState(0);
+  const handlePayment=(id)=>{
+    setSelected(id);
 
+  }
   const deleteAllCart = ()=>{
     dispatch(clearCart())
     if(cart.length==0){
@@ -46,43 +66,47 @@ const Checkout = () => {
   (accumulator, currentValue) => accumulator + currentValue.price, initialValue
 );
 
-console.log(initialValue, totalPrice)
+// console.log(initialValue, totalPrice);
+
+if(isOtpRight){
+  return <OrderSuccess/>
+}
 
 if (isLoading) {
   return  <Skeleton />
 }
   return (
     <>
-      <div style={{
-        display: "flex",
-        marginTop:"80px",
-        // border:"2px solid blue",
-        backgroundColor: "rgb(215, 225, 233)"}}>
-        <div style={{width:"600px",height:"auto",marginTop:"50px",marginLeft: "20px",marginBottom:"30px"}}>
-            <div ><h2 style={{ marginLeft:"1%",fontSize:"25px" }}>Order summary</h2>
-          {cart.map((el)=>(               
-               <div key={el.id} style={{
-                width: "85%",
-                // border: "2px solid red",
-                height: "150px",
-                marginLeft: "20px",
-                backgroundColor: "white"
+    
+      <div className={styles.checkout_main} >  {/* flex-->checkoutPage Main-div  */}  
 
-            }}>
-            <hr />
+        <div className={styles.leftContainer} >
+        <h2 style={{fontSize:"25px" }}>Order summary</h2>
+            <div className={styles.cartDataMain}>
+          {cart.map((el)=>(               
+            //    <div  key={el.id} style={{
+            //     width: "85%",
+                
+            //     marginLeft: "20px",
+            //     backgroundColor: "white"
+
+            // }}>
+            
         
-            <div style={{display:"flex", marginTop:"20px", justifyContent:"space-between", alignItems:"center"}}>
-              <div>
-                <img style={{width:"200px"}} src={el.img} alt="img" />
-              </div>
-                <div>
-                  <h2 style={{fontSize:"19px"}}>{el.name}</h2>
-                  <p style={{fontSize:"15px",marginTop:"10px"}}>{el.address}</p>
-                  <h2 style={{fontSize:"15px",marginTop:"10px"}}>Price: ₹{el.price}</h2>
+            <div className={styles.cartDataChild} key={el.id}>
+              
+                <div className={styles.Cart_Detail_Div}>
+                <img style={{width:"auto"}} src={el.img} alt="img" />
                 </div>
-              <hr />
+              
+                <div className={styles.Cart_Detail_Div}>
+                  <h2 style={{fontSize:"19px","textAlign":"center"}} >{el.name}</h2>
+                  <p style={{fontSize:"15px",marginTop:"10px","textAlign":"center"}}>{el.address}</p>
+                  <h2 style={{fontSize:"15px",marginTop:"10px","textAlign":"center"}}>Price: ₹{el.price}</h2>
+                </div>
+              
             </div>
-        </div>       
+             
    
           
             ))
@@ -112,22 +136,22 @@ if (isLoading) {
           </div>
         </div>
         
-        <div style={{ width: "60%", marginTop: "70px"}}>
-        <h2 style={{marginLeft:"-680px", fontSize:"18px", marginBottom:"20px"}}>Payment Details</h2>
-          <div
+        <div className={styles.rightContainer}>
+        <h2 style={{fontSize:"25px",color:"teal" }}>Payment Details</h2>
+          <div className={styles.payment_main_div}
             style={{
               display: "flex",
               height: "500px"
             }}
           >
-            <div style={{ height: "208px" }}>
+            <div className={styles.payment_methods} >
               <button style={{ 
                 width: "120px",
                 fontSize:"14px",
                 height:"50px",
                 color:"red",
                 backgroundColor:"white",
-                border:"1px solid whitesmoke" }}>Paytm</button>
+                border:"1px solid whitesmoke" }}>Wallets</button>
               <br />
               <button
                 style={{ 
@@ -164,36 +188,24 @@ if (isLoading) {
               <br />
             </div>
 
-            <div
-              style={{
-                border: "1px solid whitesmoke",
-                width: "80%",
-                height: "500px",
-                backgroundColor: "white"
-              }}
+            <div className={styles.payment_cred}
+             
             >
-              <h3 style={{marginLeft:"-500px", marginTop:"10px"}}>Select a wallet</h3>
-              <button style={{marginLeft:"-480px"}}>
-                <img
-                  style={{ width:"120px",border:"2px solid red", marginTop:"20px" }}
-                  src="https://1000logos.net/wp-content/uploads/2021/03/Paytm_Logo.png"
-                  alt="patym"
-                />
-              </button>
-              <br />
-              <button 
-                onClick={deleteAllCart}
-                style={{
-                  height: "30px",
-                  marginTop: "20px",
-                  backgroundColor: "red",
-                  marginLeft:"-500px",
-                  width:"80px",
-                  color:"white"
-                }}
-              >
-                PAY NOW
-              </button>
+              <h3 style={{ marginTop:"10px",fontSize:"25px" }}>Select a wallet</h3>
+              <div className={styles.wallets}>
+                {
+                  paymentLogos?.map((ele)=>{
+                    return <div key={ele.id} style={selected===ele.id?{"border":"1px solid teal",borderRadius:"5px"}:null}>
+                         <img src={ele.src} alt={ele.alt} onClick={()=>handlePayment(ele.id)}/>
+                      </div>
+                  })
+                }
+              </div>
+              {
+                selected===0?null:<WalletMethod/>
+              }
+              
+              
             </div>
           </div>
         </div>

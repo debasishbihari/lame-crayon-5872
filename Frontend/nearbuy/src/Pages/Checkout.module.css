@@ -1,0 +1,92 @@
+.checkout_main{
+   
+    display: flex;
+    background-color:rgb(215, 225, 233);
+    /* flex-wrap: wrap; */
+    gap: 0px 30px;
+}
+
+
+.leftContainer{
+   
+    width:50%;
+    height:auto;
+    margin-top:50px;
+   
+    margin-bottom:30px
+}
+
+.cartDataMain{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+.cartDataChild{
+    width: "85%";
+                
+     margin-left:20px;
+     background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+}
+
+.Cart_Detail_Div{
+    margin: auto;
+    width: 50%;
+}
+
+.rightContainer{
+    width: 50%;
+   
+    height:auto;
+    margin-top:50px;
+   
+    margin-bottom:30px
+}
+
+.payment_main_div{
+   
+    display: flex;
+    gap: 0px 15px;
+}
+.payment_methods{
+   border: 0px solid orangered;
+   
+}
+.payment_cred{
+    
+         
+        width: 80%;
+        height:500px;
+        background-color: white;
+      margin-bottom:20px;
+}
+.wallets{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.wallets>div{
+  width: 30%;
+}
+.wallets>div>img{
+    width: 100%;
+}
+@media only screen and (min-width:400px) and (max-width:895px){
+    .cartDataChild{
+        flex-direction: column;
+        
+    }
+    .checkout_main{
+        flex-direction: column;
+    }
+    .rightContainer{
+        width: 85%;
+    }
+    .leftContainer{
+        width: 85%;
+    }
+}
