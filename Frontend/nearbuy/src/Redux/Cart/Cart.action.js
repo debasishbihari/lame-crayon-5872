@@ -28,9 +28,8 @@ export const addToCart=(data)=>async(dispatch)=>{
 
 export const removeCart =(id)=>async(dispatch)=>{
     let res= await axios.delete(`https://nearbuy-mock-server.onrender.com/carts/${id}`)
-    // let data= res.data
-    // // console.log(data)
-    dispatch({type:REMOVE_CART, payload:res.data})
+    
+    dispatch({type:REMOVE_CART});
     
 }
 
